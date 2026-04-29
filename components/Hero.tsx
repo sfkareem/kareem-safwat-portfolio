@@ -52,22 +52,19 @@ export default function Hero() {
               </a>
             </div>
 
-            <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8 border-t border-border w-full">
-              <div>
-                <div className="text-[clamp(1.5rem,4vw,2.25rem)] font-display font-bold text-foreground">{statistics.yearsOfExperience}</div>
-                <div className="text-[clamp(0.7rem,1.5vw,0.875rem)] text-muted-foreground mt-1">Years Experience</div>
-              </div>
-              <div>
-                <div className="text-[clamp(1.5rem,4vw,2.25rem)] font-display font-bold text-foreground">{statistics.projectsValue}</div>
-                <div className="text-[clamp(0.7rem,1.5vw,0.875rem)] text-muted-foreground mt-1">Projects Value</div>
-              </div>
-              <div>
-                <div className="text-[clamp(1.5rem,4vw,2.25rem)] font-display font-bold text-foreground">{statistics.bidSuccessRate}</div>
-                <div className="text-[clamp(0.7rem,1.5vw,0.875rem)] text-muted-foreground mt-1">Bid Success Rate</div>
-              </div>
-              <div>
-                <div className="text-[clamp(1.5rem,4vw,2.25rem)] font-display font-bold text-foreground">{statistics.costReduction}</div>
-                <div className="text-[clamp(0.7rem,1.5vw,0.875rem)] text-muted-foreground mt-1">Cost Reduction</div>
+            <div className="mt-10 pt-8 border-t border-border w-full">
+              <p className="text-sm text-muted-foreground mb-6">
+                Over <span className="font-semibold text-foreground">{statistics.yearsOfExperience}</span> of experience managing projects valued at <span className="font-semibold text-foreground">{statistics.projectsValue}</span>, with a <span className="font-semibold text-foreground">{statistics.bidSuccessRate}</span> bid success rate and <span className="font-semibold text-foreground">{statistics.costReduction}</span> average cost reduction.
+              </p>
+              <div className="flex flex-wrap gap-8">
+                <div className="flex items-baseline gap-2">
+                  <span className="text-2xl font-display font-bold text-foreground">{statistics.yearsOfExperience}</span>
+                  <span className="text-sm text-muted-foreground">Years</span>
+                </div>
+                <div className="flex items-baseline gap-2">
+                  <span className="text-2xl font-display font-bold text-foreground">{statistics.projectsValue}</span>
+                  <span className="text-sm text-muted-foreground">Projects</span>
+                </div>
               </div>
             </div>
           </motion.div>
