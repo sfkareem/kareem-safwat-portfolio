@@ -27,7 +27,7 @@ export default function Home() {
             transition={{ duration: 0.5 }}
             className="space-y-4 mb-16"
           >
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-foreground">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground">
               Kareem Safwat
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
