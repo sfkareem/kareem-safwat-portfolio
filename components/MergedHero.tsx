@@ -62,7 +62,7 @@ export function MergedHero() {
                 {portfolioData.personal.tagline}
               </motion.p>
               
-              <h2 className="text-[clamp(1.1rem,2.5vw,1.875rem)] tracking-tighter font-regular flex flex-wrap items-center justify-center md:justify-start gap-x-3">
+              <h2 className="text-[clamp(1.1rem,2.5vw,1.875rem)] tracking-tight font-regular flex flex-wrap items-center justify-center md:justify-start gap-x-3">
                 <span className="text-foreground/80">Delivering projects that are</span>
                 <span className="relative inline-flex h-[1.2em] overflow-hidden">
                   {/* Ghost element to set container width to the longest title */}

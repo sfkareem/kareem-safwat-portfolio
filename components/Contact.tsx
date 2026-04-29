@@ -27,7 +27,7 @@ export default function Contact() {
               {status}
             </div>
             <h2 className="font-display text-4xl md:text-5xl font-bold mb-6">Let&apos;s Work Together</h2>
-            <p className="text-xl text-zinc-400 max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               {message}
             </p>
           </motion.div>
