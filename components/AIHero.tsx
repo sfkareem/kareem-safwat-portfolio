@@ -3,7 +3,6 @@
 import { useEffect, useRef } from "react";
 import { useInView, motion, useMotionValue, useTransform, animate } from "motion/react";
 import dynamic from 'next/dynamic';
-import { Spotlight } from "@/components/ui/spotlight"
 
 // Dynamically import SplineScene to prevent it from blocking the main thread during initial load
 const SplineScene = dynamic(() => import("@/components/ui/splite").then(mod => mod.SplineScene), {
@@ -58,12 +57,6 @@ export function AIHero() {
         </div>
       </div>
 
-      {/* Spotlight effect */}
-      <Spotlight
-        className="-top-40 left-0 md:left-60 md:-top-20 z-10 pointer-events-none"
-        fill="white"
-      />
-      
       {/* Content Overlay - Responsive alignment */}
       <div className="relative z-20 w-full max-w-[1400px] mx-auto px-6 md:px-16 lg:px-32 pointer-events-none">
         <div className="max-w-2xl mx-auto lg:mx-0 flex flex-col items-center text-center lg:items-start lg:text-left transition-all duration-500">
