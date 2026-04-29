@@ -67,7 +67,7 @@ export function AIHero() {
       {/* Content Overlay - Responsive alignment */}
       <div className="relative z-20 w-full max-w-[1400px] mx-auto px-6 md:px-16 lg:px-32 pointer-events-none">
         <div className="max-w-2xl mx-auto lg:mx-0 flex flex-col items-center text-center lg:items-start lg:text-left transition-all duration-500">
-          <h1 className="text-[clamp(2.5rem,8vw,5rem)] font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 tracking-tighter leading-[1.1]">
+          <h1 className="text-[clamp(2.5rem,8vw,5rem)] font-bold text-white tracking-tighter leading-[1.1]">
             AI Vibe Coder
           </h1>
           <p className="mt-6 text-neutral-300 max-w-lg text-[clamp(1rem,2.5vw,1.25rem)] leading-relaxed">
