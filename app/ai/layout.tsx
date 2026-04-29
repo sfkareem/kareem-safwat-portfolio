@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     title: 'AI Vibe Coder | Agentic Software Development - Kareem Safwat',
     description: 'Expert in AI Vibe Coding and Agentic Software Development. Building the future of AI-powered applications.',
     type: 'website',
-    url: 'https://kareemsafwat.com/ai',
+    url: 'https://kareemsf.vercel.app/ai',
   },
   twitter: {
     card: 'summary_large_image',
@@ -36,7 +36,7 @@ export default function AILayout({
     "@type": "Person",
     "name": "Kareem Safwat",
     "jobTitle": "AI Vibe Coder & Senior Quantity Surveyor",
-    "url": "https://kareemsafwat.com/ai",
+    "url": "https://kareemsf.vercel.app/ai",
     "knowsAbout": [
       "AI Vibe Coding",
       "Agentic Software Development",
