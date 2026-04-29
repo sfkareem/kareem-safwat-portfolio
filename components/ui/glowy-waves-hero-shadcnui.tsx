@@ -56,6 +56,8 @@ export function GlowyWavesHero({ children }: { children?: React.ReactNode }) {
 
     let animationId: number;
     let time = 0;
+    let isVisible = true;
+    let isInViewport = true;
 
     const computeThemeColors = () => {
       const rootStyles = getComputedStyle(document.documentElement);
@@ -192,6 +194,19 @@ export function GlowyWavesHero({ children }: { children?: React.ReactNode }) {
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("mouseleave", handleMouseLeave);
 
+    const handleVisibilityChange = () => {
+      isVisible = document.visibilityState === "visible";
+    };
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    const intersectionObserver = new IntersectionObserver(
+      ([entry]) => {
+        isInViewport = entry.isIntersecting;
+      },
+      { threshold: 0 }
+    );
+    intersectionObserver.observe(canvas);
+
     const drawWave = (wave: WaveConfig) => {
       ctx.save();
       ctx.beginPath();
@@ -232,6 +247,11 @@ export function GlowyWavesHero({ children }: { children?: React.ReactNode }) {
     };
 
     const animate = () => {
+      if (!isVisible || !isInViewport) {
+        animationId = window.requestAnimationFrame(animate);
+        return;
+      }
+
       time += 1;
 
       mouseRef.current.x +=
@@ -260,6 +280,8 @@ export function GlowyWavesHero({ children }: { children?: React.ReactNode }) {
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseleave", handleMouseLeave);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      intersectionObserver.disconnect();
       cancelAnimationFrame(animationId);
       observer.disconnect();
     };
