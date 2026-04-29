@@ -1,7 +1,7 @@
 'use client';
 
 import { ReactLenis } from 'lenis/react';
-import { useEffect, useState } from 'react';
+import { useSyncExternalStore } from 'react';
 
 const LENIS_OPTIONS = {
   lerp: 0.1,
@@ -15,30 +15,33 @@ const LENIS_OPTIONS = {
   autoRaf: true,
 } as const;
 
+function useIsClient() {
+  return useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
+}
+
+function usePrefersReducedMotion() {
+  return useSyncExternalStore(
+    (callback) => {
+      const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+      mq.addEventListener('change', callback);
+      return () => mq.removeEventListener('change', callback);
+    },
+    () => window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+    () => false
+  );
+}
+
 export function ReactLenisProvider({ children }: { children: React.ReactNode }) {
-  const [mounted, setMounted] = useState(false);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const isClient = useIsClient();
+  const prefersReducedMotion = usePrefersReducedMotion();
 
-  useEffect(() => {
-    setMounted(true);
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setPrefersReducedMotion(mediaQuery.matches);
-
-    const handler = (event: MediaQueryListEvent) => {
-      setPrefersReducedMotion(event.matches);
-    };
-
-    mediaQuery.addEventListener('change', handler);
-    return () => mediaQuery.removeEventListener('change', handler);
-  }, []);
-
-  // Avoid hydration mismatch: render consistently until client mount
-  if (!mounted) {
-    return <>{children}</>;
-  }
-
-  // When reduced motion is preferred, render children without Lenis
-  if (prefersReducedMotion) {
+  // Avoid hydration mismatch: only render Lenis on the client.
+  // Also respect users who prefer reduced motion.
+  if (!isClient || prefersReducedMotion) {
     return <>{children}</>;
   }
 

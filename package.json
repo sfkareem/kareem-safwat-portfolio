@@ -6,9 +6,9 @@
     "node": ">=18.0.0"
   },
   "scripts": {
-    "dev": "NODE_OPTIONS='--max-old-space-size=4096' next dev",
-    "build": "NODE_OPTIONS='--max-old-space-size=1536' next build",
-    "start": "next start -p $PORT",
+    "dev": "cross-env NODE_OPTIONS='--max-old-space-size=4096' next dev",
+    "build": "cross-env NODE_OPTIONS='--max-old-space-size=1536' next build",
+    "start": "next start",
     "lint": "eslint .",
     "clean": "next clean"
   },
@@ -61,6 +61,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "cross-env": "^10.1.0",
     "eslint": "9.39.1",
     "eslint-config-next": "16.0.8",
     "firebase-tools": "^15.0.0",
