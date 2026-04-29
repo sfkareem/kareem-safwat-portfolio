@@ -1,0 +1,300 @@
+{
+  "personal": {
+    "name": "Kareem Safwat",
+    "title": "Senior Quantity Surveyor",
+    "tagline": "Constructing Value & Control",
+    "summary": "Senior Quantity Surveyor with 9+ years of experience. RICS APC Candidate. Expert in tendering, procurement, and strategic cost management. Also an AI Vibe Coder and Agentic Software Developer leveraging Anthropic's Claude to automate complex workflows and build scalable full-stack web apps.",
+    "professionalStatement": "I bridge the critical gap between on-site construction realities and financial constraints, ensuring projects are delivered on budget without compromising quality. I also utilize AI Vibe Coding and Agentic Software Development to build intelligent, scalable full-stack applications.",
+    "contact": {
+      "email": "kareemsf1995@gmail.com",
+      "linkedin": "https://linkedin.com/in/kareemsafwat/",
+      "twitter": "https://x.com/Sf_Kareem",
+      "phone": {
+        "egypt": "+20 101 817 1342",
+        "ksa": "+966 53 726 2745"
+      },
+      "whatsapp": {
+        "egypt": "https://wa.me/201018171342",
+        "ksa": "https://wa.me/966537262745"
+      }
+    },
+    "resume": "https://1drv.ms/b/c/3ef89486fb4c3d1e/Ea1q4HK2lSNAg9JO-dxQHDoBT6CxmOV6giXxdlq9YNRKOg?e=m6m6ZY",
+    "profileImage": "https://i.postimg.cc/FKZNYFgt/kareem-profile-large.png",
+    "portfolioUrl": "https://kareemsf.vercel.app"
+  },
+  "statistics": {
+    "yearsOfExperience": "9+",
+    "projectsValue": "$1B+",
+    "bidSuccessRate": "85%",
+    "costReduction": "20%",
+    "aiDriven": "100%"
+  },
+  "expertise": {
+    "civil": {
+      "tools": [
+        "CCS Candy",
+        "BidBow",
+        "PlanSwift",
+        "Power BI",
+        "AutoCAD",
+        "MS Office 365",
+        "Primavera P6"
+      ],
+      "technicalSkills": [
+        "Quantity Surveying",
+        "Cost Estimation",
+        "Tender Management",
+        "Contract Administration",
+        "Procurement Strategy",
+        "Risk Management",
+        "Value Engineering",
+        "Claims Management",
+        "Cost Control"
+      ],
+      "specializations": [
+        "CCS Candy Expert",
+        "FIDIC",
+        "Green Building"
+      ]
+    },
+    "ai": {
+      "tools": [
+        "Claude Code",
+        "Anthropic API",
+        "Cursor"
+      ],
+      "technicalSkills": [
+        "AI Vibe Coding",
+        "Agentic Software Development",
+        "Prompt Engineering",
+        "AI Workflow Automation",
+        "Full Stack Web Apps",
+        "Scalable Full-Stack Applications"
+      ],
+      "specializations": [
+        "AI & Vibe Coding"
+      ]
+    }
+  },
+  "experience": [
+    {
+      "title": "Senior Tendering & Procurement Engineer",
+      "company": "Silver Foundation",
+      "logo": "https://silver-foundation.com/wp-content/uploads/2024/09/SF-logo-2-1.webp",
+      "location": "Riyadh, KSA",
+      "startDate": "Jan. 25",
+      "endDate": "Present",
+      "isCurrent": true,
+      "responsibilities": [
+        "Lead the preparation and issuance of tender packages and analyze requirements for compliance",
+        "Prepare accurate cost estimations and evaluate submitted bids",
+        "Coordinate significantly with internal departments including Engineering, Project Management, and Finance",
+        "Manage supplier relationships, including identification, evaluation, and negotiation of terms and contracts",
+        "Oversee procurement of materials and services focusing on quality compliance and cost savings"
+      ]
+    },
+    {
+      "title": "Team Leader (Cost Estimation & Tendering)",
+      "company": "Diagram Construction",
+      "logo": "https://diagramconstruction.com/assets/img/logo-white.png",
+      "logoBg": "bg-zinc-900",
+      "location": "New Cairo, Egypt",
+      "startDate": "Jul. 24",
+      "endDate": "Jan. 25",
+      "isCurrent": false,
+      "responsibilities": [
+        "Led a team to prepare accurate cost estimates and winning tender submissions for large-scale projects",
+        "Developed cost estimation models reducing error margins by 20%",
+        "Secured contracts worth over $10 million by delivering precise, competitive tenders"
+      ]
+    },
+    {
+      "title": "Commercial Engineer",
+      "company": "Tiabco For Supplies & Construction",
+      "logo": "https://media.licdn.com/dms/image/v2/C4D0BAQHI5LYoJjkQfg/company-logo_200_200/company-logo_200_200/0/1655023932483?e=1775692800&v=beta&t=lbrZBfnXTs0JtDwImH6hdB0eTAEqP1xMwuCx6Dyo4BM",
+      "location": "Cairo, Egypt",
+      "startDate": "Oct. 23",
+      "endDate": "Jul. 24",
+      "isCurrent": false,
+      "responsibilities": [
+        "Managed full tender process and pricing strategies using CCS Candy",
+        "Administered construction contracts, tracking milestones, payments, and claims",
+        "Performed detailed quantity surveying and prepared Bills of Quantities (BOQs)"
+      ]
+    },
+    {
+      "title": "Tendering Engineer",
+      "company": "DKS Group",
+      "logo": "https://i-p.rmcdn.net/66615d99297fb3004114a789/5667357/image-954f1e02-c9a4-4ad2-a208-2aa0f22e204b.png?w=502&e=webp&nll=true&cX=0&cY=1111&cW=3334&cH=1111",
+      "location": "Cairo, Egypt",
+      "startDate": "Nov. 22",
+      "endDate": "Oct. 23",
+      "isCurrent": false,
+      "responsibilities": [
+        "Utilized CCS Candy for comprehensive tender preparation, cost estimation, and resource planning",
+        "Employed PlanSwift for accurate quantity takeoffs from project documents",
+        "Managed bid submissions and supplier evaluation using BidBow"
+      ]
+    },
+    {
+      "title": "Quantity Surveyor Engineer",
+      "company": "Tiabco For Supplies & Construction",
+      "logo": "https://media.licdn.com/dms/image/v2/C4D0BAQHI5LYoJjkQfg/company-logo_200_200/company-logo_200_200/0/1655023932483?e=1775692800&v=beta&t=lbrZBfnXTs0JtDwImH6hdB0eTAEqP1xMwuCx6Dyo4BM",
+      "location": "Cairo, Egypt",
+      "startDate": "Jan. 21",
+      "endDate": "Oct. 22",
+      "isCurrent": false,
+      "responsibilities": [
+        "Prepared cost estimates, feasibility studies, and managed tender documentation",
+        "Monitored project costs, tracked changes, and managed valuations and payments",
+        "Analyzed financial performance and reported on project profitability"
+      ]
+    },
+    {
+      "title": "Site Engineer",
+      "company": "City Stars For Construction",
+      "logo": "https://media.licdn.com/dms/image/v2/C4E0BAQHk8b6SLfKe5w/company-logo_200_200/company-logo_200_200/0/1630648251484?e=1775692800&v=beta&t=M474NwWWhySDcVEnIFDbGr-ZvpbA9Hjdtb8fbP8hwFM",
+      "location": "Sharm El Sheikh, Egypt",
+      "startDate": "Nov. 19",
+      "endDate": "Nov. 20",
+      "isCurrent": false,
+      "responsibilities": [
+        "Constructed four sewage treatment plants and tanks in Golden Coast",
+        "Managed structural and architectural modifications for City Stars and Swiss Hotel blocks"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Bachelor's Degree",
+      "field": "Building & Construction",
+      "institution": "Arab Academy for Science, Technology and Maritime Transport",
+      "startDate": "2012",
+      "endDate": "2017",
+      "gpa": "3.4/4.0",
+      "graduationProject": "LEED Sustainability"
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Smartsheet Project Management - The Complete Beginners Course",
+      "category": "civil",
+      "issuer": "UDEMY",
+      "issueDate": "Sep. 25",
+      "duration": "6 hours",
+      "instructor": "George Smarts",
+      "description": "Certificate of Completion for comprehensive Smartsheet beginner training covering Project Management fundamentals and Smart Sheet operations",
+      "url": "https://ude.my/UC-a6cc2f4b-1c8a-4d1e-a366-9d3995ff24a5"
+    },
+    {
+      "name": "CCS CANDY Cost Estimation Program 2025",
+      "category": "civil",
+      "issuer": "UDEMY",
+      "issueDate": "Nov. 25",
+      "duration": "10.5 hours",
+      "description": "Certificate of Completion for advanced CCS Candy cost estimation program with comprehensive training",
+      "url": "https://ude.my/UC-b107392b-7353-4d80-9cb1-3aef924c0618"
+    },
+    {
+      "name": "Advanced Quantity Surveying Diploma (RICS Pathway)",
+      "category": "civil",
+      "issuer": "AQSA",
+      "issueDate": "Oct. 25",
+      "description": "Professional diploma in advanced quantity surveying following RICS pathway guidelines. Comprehensive training in cost management",
+      "url": "https://app.kajabi.com/certificates/1943480c"
+    },
+    {
+      "name": "Smartsheet Project Management - Intermediate",
+      "category": "civil",
+      "issuer": "UDEMY",
+      "issueDate": "Sep. 25",
+      "description": "Advanced Smartsheet project management training covering Project Management and Advanced Planning techniques",
+      "url": "https://ude.my/UC-b62d627e-095f-49b0-8851-042cdf8b2125"
+    },
+    {
+      "name": "Cost Management Professional (CMP)",
+      "category": "civil",
+      "issuer": "CONTROLS ACADEMY",
+      "issueDate": "Nov. 23",
+      "description": "Comprehensive cost management certification. Equipped with advanced skills in validating cost information and performing analysis",
+      "url": "https://kareemsf.vercel.app/cmp-certificate.jpg"
+    },
+    {
+      "name": "BidBow Estimation Course",
+      "category": "civil",
+      "issuer": "BIDBOW",
+      "issueDate": "Jun. 24",
+      "description": "Professional certification in BidBow estimation software for project cost management",
+      "url": "https://kareemsf.vercel.app/bidbow-certificate.jpg"
+    },
+    {
+      "name": "Autodesk Civil 3D Essentials",
+      "category": "civil",
+      "issuer": "MTC",
+      "issueDate": "Oct. 22",
+      "description": "Certificate of Completion for Autodesk Civil 3D 2020 Essential Training. Mastered Civil 3D basics",
+      "url": "https://kareemsf.vercel.app/autodesk-civil3d-certificate.jpg"
+    },
+    {
+      "name": "McKinsey.org Forward Program",
+      "category": "civil",
+      "issuer": "McKinsey & Company",
+      "issueDate": "Dec. 25",
+      "description": "Completed the McKinsey.org Forward online learning program. Developed practical skills for success in the future of work, including problem-solving, effective communication, and adaptable mindsets.",
+      "url": "https://www.credly.com/badges/0553797e-e6f5-4dd1-8d6b-80f2e8ab8688/linked_in_profile",
+      "image": "https://images.credly.com/size/340x340/images/bad47198-deb5-48db-bbc3-85adb64db125/blob"
+    },
+    {
+      "name": "Certificate of Completion: Claude Code in Action",
+      "category": "ai",
+      "issuer": "Anthropic",
+      "issueDate": "2026",
+      "description": "Certified by Anthropic in Claude Code for agentic software development. Mastered using Claude's CLI to automate complex refactoring, debugging, and testing directly within the terminal.",
+      "url": "https://verify.skilljar.com/c/4toj6hgq4hbt",
+      "image": "https://media.licdn.com/dms/image/v2/D4D2DAQEmenGrqQVDwQ/profile-treasury-image-shrink_800_800/B4DZz4p1C6KEAY-/0/1773698241948?e=1774627200&v=beta&t=kEz9qnCt9GVi-UUPRnPaUjrXWXoX1acqfCj5kz1uxSE"
+    },
+    {
+      "name": "Claude 101: Professional AI Workflow Certification",
+      "category": "ai",
+      "issuer": "Anthropic",
+      "issueDate": "2026",
+      "description": "Completed the Claude 101 certification by Anthropic, mastering advanced AI workflows including Prompt Engineering, Knowledge Management, and Technical Automation.",
+      "url": "https://verify.skilljar.com/c/25rca32jwbfa",
+      "image": "https://media.licdn.com/dms/image/v2/D4D2DAQFCQfCEJazeQg/profile-treasury-image-shrink_800_800/B4DZz5Ond8IoAc-/0/1773707885530?e=1774627200&v=beta&t=HT-n83qZ-1_TkqctrgSjPNGrc27Wa1YWtFVRZj3DChg"
+    },
+    {
+      "name": "AI Fluency: Framework & Foundations",
+      "category": "ai",
+      "issuer": "Anthropic",
+      "issueDate": "2026",
+      "description": "Completed Anthropic's comprehensive AI Fluency course covering the 4D Framework for effective human-AI collaboration.",
+      "url": "https://verify.skilljar.com/c/49kr29ymzyku",
+      "image": "https://media.licdn.com/dms/image/v2/D4D2DAQE5drnT3SOp2A/profile-treasury-image-shrink_800_800/B4DZz5UwNNIoAY-/0/1773709494341?e=1774627200&v=beta&t=BAIhBkRfp-enErpAotaEF0YURkrIiU_QInBtOwVx_0Y"
+    },
+    {
+      "name": "Claude with the Anthropic API",
+      "category": "ai",
+      "issuer": "Anthropic",
+      "issueDate": "2026",
+      "description": "Completed an in-depth certification on Anthropic's Claude models. Covered API implementation, effective prompt engineering, and integrating Claude's advanced reasoning capabilities into scalable applications.",
+      "url": "https://verify.skilljar.com/c/cncmtd98eg9m",
+      "image": "https://media.licdn.com/dms/image/v2/D4D2DAQEZ1aNSfWD4Kw/profile-treasury-image-shrink_800_800/B4DZz7LzKKKQAY-/0/1773740701271?e=1774627200&v=beta&t=qoMQ-NPyr_UAjSe7KUH6-yvs0SD29TudprgzbbQv_nY"
+    }
+  ],
+  "trustedBy": [
+    {
+      "name": "Controls Academy",
+      "url": "https://controlsacademy.net",
+      "logo": "https://controlsacademy.net/logo.png"
+    }
+  ],
+  "availability": {
+    "status": "Available for Work",
+    "message": "Let's build something exceptional together. Whether you need precise cost estimation, tendering strategy, or procurement management, I'm here to help your project succeed."
+  },
+  "metadata": {
+    "portfolioVersion": "2026",
+    "designedAndDevelopedBy": "Kareem Safwat",
+    "copyright": "Kareem Safwat © 2026"
+  }
+}

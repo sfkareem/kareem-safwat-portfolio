@@ -1,0 +1,17 @@
+{
+  "hosting": [
+    {
+      "target": "portfolio-site",
+      "public": "public",
+      "rewrites": [
+        {
+          "source": "**",
+          "run": {
+            "serviceId": "kareem-safwat-portfolio",
+            "region": "us-west1"
+          }
+        }
+      ]
+    }
+  ]
+}
