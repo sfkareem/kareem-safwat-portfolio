@@ -139,6 +139,7 @@ Portfolio Page Data: ${JSON.stringify(portfolioData)}`,
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
             onClick={() => setIsOpen(true)}
+            aria-label="Open chat"
             className="bg-primary/90 backdrop-blur-sm text-primary-foreground p-4 rounded-full shadow-xl hover:scale-105 transition-transform"
           >
             <MessageCircle />
@@ -159,6 +160,7 @@ Portfolio Page Data: ${JSON.stringify(portfolioData)}`,
                 <button 
                   onClick={handleClearChat} 
                   title="Start fresh" 
+                  aria-label="Clear chat"
                   className="hover:bg-muted p-1.5 rounded-full text-muted-foreground hover:text-foreground transition-colors"
                 >
                   <RefreshCcw size={14} />
@@ -166,6 +168,7 @@ Portfolio Page Data: ${JSON.stringify(portfolioData)}`,
                 <button 
                   onClick={() => setIsOpen(false)} 
                   title="Close"
+                  aria-label="Close chat"
                   className="hover:bg-muted p-1.5 rounded-full text-muted-foreground hover:text-foreground transition-colors"
                 >
                   <X size={16} />
@@ -204,7 +207,7 @@ Portfolio Page Data: ${JSON.stringify(portfolioData)}`,
               <input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
+                onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
                 className="flex-1 bg-transparent border border-border rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
                 placeholder="Ask about Kareem..."
               />
