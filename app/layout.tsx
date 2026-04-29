@@ -34,7 +34,10 @@ export const metadata: Metadata = {
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html lang="en" suppressHydrationWarning className={`${inter.variable} ${spaceGrotesk.variable}`}>
-      <body className="font-sans antialiased selection:bg-primary/30 selection:text-primary" suppressHydrationWarning>
+      <body className="font-sans antialiased selection:bg-primary/30 selection:text-primary">
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-4 focus:left-4 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-md">
+          Skip to main content
+        </a>
         <Script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.72/build/spline-viewer.js" strategy="lazyOnload" />
         <ThemeProvider
           attribute="class"
@@ -43,7 +46,9 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
           disableTransitionOnChange
         >
           <SmoothScroll />
-          {children}
+          <div id="main-content">
+            {children}
+          </div>
           <AIChatWidget />
         </ThemeProvider>
       </body>
