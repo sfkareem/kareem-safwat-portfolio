@@ -4,7 +4,8 @@ import Script from 'next/script';
 import './globals.css'; // Global styles
 import { ThemeProvider } from '@/components/theme-provider';
 import { AIChatWidget } from '@/components/ui/AIChatWidget';
-import { SmoothScroll } from '@/components/SmoothScroll';
+import { ReactLenisProvider } from '@/components/ReactLenisProvider';
+import 'lenis/dist/lenis.css';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -45,10 +46,11 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
           enableSystem
           disableTransitionOnChange
         >
-          <SmoothScroll />
-          <div id="main-content">
-            {children}
-          </div>
+          <ReactLenisProvider>
+            <div id="main-content">
+              {children}
+            </div>
+          </ReactLenisProvider>
           <AIChatWidget />
         </ThemeProvider>
       </body>
