@@ -79,20 +79,15 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* QR Code Section — moved to /businesscard page for cleaner hub */}
+          {/* QR Code Section */}
           {baseUrl && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="mt-12 text-center"
+              className="mt-16 flex flex-col items-center gap-4 w-full max-w-sm"
             >
-              <a 
-                href={`${baseUrl}/businesscard`}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors underline underline-offset-4"
-              >
-                View digital business card
-              </a>
+              <QRShare url={`${baseUrl}/businesscard`} />
             </motion.div>
           )}
         </div>
