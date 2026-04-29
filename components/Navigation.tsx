@@ -39,8 +39,8 @@ export default function Navigation() {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          <a href="#" className="font-display font-bold text-xl tracking-tight text-zinc-900">
-            KS<span className="text-emerald-500">.</span>
+          <a href="#" className="font-display font-bold text-xl tracking-tight text-foreground">
+            KS<span className="text-primary">.</span>
           </a>
 
           {/* Desktop Nav */}
@@ -49,14 +49,14 @@ export default function Navigation() {
               <a 
                 key={link.name} 
                 href={link.href}
-                className="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors"
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
               >
                 {link.name}
               </a>
             ))}
             <a 
               href="#contact"
-              className="px-4 py-2 rounded-full bg-zinc-900 text-white text-sm font-medium hover:bg-zinc-800 transition-colors"
+              className="px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/80 transition-colors"
             >
               Contact Me
             </a>
@@ -64,7 +64,7 @@ export default function Navigation() {
 
           {/* Mobile Menu Toggle */}
           <button 
-            className="md:hidden p-2 text-zinc-600"
+            className="md:hidden p-2 text-muted-foreground"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={isMobileMenuOpen}
@@ -81,7 +81,7 @@ export default function Navigation() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-b border-zinc-200 overflow-hidden"
+            className="md:hidden bg-background border-b border-border overflow-hidden"
           >
             <div className="px-4 py-6 space-y-4 flex flex-col">
               {navLinks.map((link) => (
@@ -89,7 +89,7 @@ export default function Navigation() {
                   key={link.name} 
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-base font-medium text-zinc-600 hover:text-zinc-900 transition-colors py-2"
+                  className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors py-2"
                 >
                   {link.name}
                 </a>
@@ -97,7 +97,7 @@ export default function Navigation() {
               <a 
                 href="#contact"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="inline-block text-center px-4 py-3 rounded-xl bg-zinc-900 text-white text-base font-medium hover:bg-zinc-800 transition-colors mt-4"
+                className="inline-block text-center px-4 py-3 rounded-xl bg-primary text-primary-foreground text-base font-medium hover:bg-primary/80 transition-colors mt-4"
               >
                 Contact Me
               </a>
