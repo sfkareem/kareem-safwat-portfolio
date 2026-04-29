@@ -62,8 +62,8 @@ export default function Home() {
               <div
                 className="h-full p-8 md:p-12 transition-all duration-300 flex flex-col items-center text-center gap-6 overflow-hidden"
               >
-                <div className="absolute inset-0 bg-gradient-to-bl from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="h-20 w-20 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-500 group-hover:scale-110 transition-transform duration-500">
+                <div className="absolute inset-0 bg-gradient-to-bl from-secondary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="h-20 w-20 rounded-2xl bg-secondary/10 flex items-center justify-center text-secondary group-hover:scale-110 transition-transform duration-500">
                   <Code2 className="w-10 h-10" />
                 </div>
                 <div className="space-y-3 relative z-10">
@@ -72,7 +72,7 @@ export default function Home() {
                     Full Stack Web Apps, Agentic Software Development, and AI Workflows.
                   </p>
                 </div>
-                <div className="mt-auto pt-6 flex items-center gap-2 text-blue-500 font-semibold group-hover:gap-4 transition-all relative z-10">
+                <div className="mt-auto pt-6 flex items-center gap-2 text-secondary font-semibold group-hover:gap-4 transition-all relative z-10">
                   View Portfolio <ArrowRight className="w-5 h-5" />
                 </div>
               </div>

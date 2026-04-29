@@ -41,7 +41,7 @@ function Counter({ from, to, suffix = "" }: { from: number; to: number; suffix?:
 
 export function AIHero() {
   return (
-    <div data-nav-theme="dark" className="w-full min-h-screen bg-black relative overflow-hidden flex items-center">
+    <div data-nav-theme="dark" className="w-full min-h-screen bg-background relative overflow-hidden flex items-center">
       {/* Spline Scene Container - Responsive sizing and positioning */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-auto">
         <div className="relative w-full h-full">
@@ -70,22 +70,22 @@ export function AIHero() {
           <h1 className="text-[clamp(2.5rem,8vw,5rem)] font-bold text-white tracking-tighter leading-[1.1]">
             AI Vibe Coder
           </h1>
-          <p className="mt-6 text-neutral-300 max-w-lg text-[clamp(1rem,2.5vw,1.25rem)] leading-relaxed">
+          <p className="mt-6 text-muted-foreground max-w-lg text-[clamp(1rem,2.5vw,1.25rem)] leading-relaxed">
             Specializing in Agentic Software Development, AI-powered workflows, and scalable full-stack applications.
           </p>
 
           <div className="mt-12 grid grid-cols-2 gap-6 max-w-sm w-full">
             <div className="flex flex-col items-center lg:items-start">
-              <div className="text-[clamp(1.5rem,4vw,2.25rem)] font-bold text-white">
+              <div className="text-[clamp(1.5rem,4vw,2.25rem)] font-bold text-foreground">
                 <Counter from={0} to={3} suffix="+" />
               </div>
-              <div className="text-[clamp(0.7rem,1.5vw,0.875rem)] text-neutral-400 mt-1">Years Experience</div>
+              <div className="text-[clamp(0.7rem,1.5vw,0.875rem)] text-muted-foreground mt-1">Years Experience</div>
             </div>
             <div className="flex flex-col items-center lg:items-start">
-              <div className="text-[clamp(1.5rem,4vw,2.25rem)] font-bold text-white">
+              <div className="text-[clamp(1.5rem,4vw,2.25rem)] font-bold text-foreground">
                 <Counter from={0} to={100} suffix="%" />
               </div>
-              <div className="text-[clamp(0.7rem,1.5vw,0.875rem)] text-neutral-400 mt-1">AI-Driven</div>
+              <div className="text-[clamp(0.7rem,1.5vw,0.875rem)] text-muted-foreground mt-1">AI-Driven</div>
             </div>
           </div>
         </div>
