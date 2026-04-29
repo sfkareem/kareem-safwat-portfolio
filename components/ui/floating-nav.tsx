@@ -207,7 +207,7 @@ export default function FloatingNav() {
             <Link
               href="/"
               className={cn(
-                "relative flex flex-col items-center gap-1 transition-all duration-500",
+                "relative flex flex-col items-center justify-center gap-1 min-w-[44px] min-h-[44px] transition-all duration-500",
                 isDarkBackground ? "text-white/50 hover:text-white" : "text-foreground/50 hover:text-foreground"
               )}
             >
@@ -225,7 +225,7 @@ export default function FloatingNav() {
                   href={item.href}
                   onClick={() => setActiveItem(item.href)}
                   className={cn(
-                    "relative flex flex-col items-center gap-1 transition-all duration-500",
+                    "relative flex flex-col items-center justify-center gap-1 min-w-[44px] min-h-[44px] transition-all duration-500",
                     isActive 
                       ? (isDarkBackground ? "text-white" : "text-primary")
                       : (isDarkBackground ? "text-white/50 hover:text-white" : "text-foreground/50 hover:text-foreground")
