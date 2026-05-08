@@ -7,7 +7,6 @@ import { ArrowRight, HardHat, Code2, QrCode } from "lucide-react";
 import { GlowyWavesHero } from "@/components/ui/glowy-waves-hero-shadcnui";
 import { FloatingFooter } from "@/components/ui/floating-footer";
 import { QRShare } from "@/components/ui/qr-share";
-import "@/lib/firebase"; // Initialize Firebase and Analytics
 
 export default function Home() {
   const [baseUrl, setBaseUrl] = useState("");
