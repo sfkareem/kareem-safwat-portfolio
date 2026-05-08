@@ -1,11 +1,10 @@
 "use client";
 
-import FloatingNav from "@/components/ui/floating-nav";
+import { VerticalTooltipNavbar } from "@/components/ui/vertical-tooltip-navbar";
 import { GlowyWavesHero } from "@/components/ui/glowy-waves-hero-shadcnui";
 import { MergedHero } from "@/components/MergedHero";
 import { Timeline } from "@/components/ui/timeline";
 import { SkillsSection } from "@/components/SkillsSection";
-import { StatsSection } from "@/components/StatsSection";
 import { FAQSection } from "@/components/FAQSection";
 import { CertificationsSection } from "@/components/CertificationsSection";
 import { ContactSection } from "@/components/ContactSection";
@@ -63,7 +62,7 @@ export default function CivilPage() {
 
   return (
     <main className="min-h-screen relative overflow-x-hidden bg-background">
-      <FloatingNav />
+      <VerticalTooltipNavbar />
 
       <div className="w-full transition-all duration-300">
         <section id="home">
@@ -79,8 +78,6 @@ export default function CivilPage() {
           </section>
 
           <SkillsSection category="civil" />
-
-          <StatsSection category="civil" />
 
           <CertificationsSection category="civil" isLoading={isLoading} />
 

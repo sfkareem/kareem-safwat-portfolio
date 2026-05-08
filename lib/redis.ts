@@ -11,9 +11,9 @@ function getRedis(): Redis | null {
   return redis;
 }
 
-const SESSION_TTL_MS = 1800;
+const SESSION_TTL_S = 1800; // 30 minutes
 const RATE_LIMIT_MAX = 30;
-const RATE_LIMIT_WINDOW_MS = 60;
+const RATE_LIMIT_WINDOW_S = 60; // 60 seconds
 
 export async function getSessionMessages(sessionId: string): Promise<{ role: string; content: string }[]> {
   const client = getRedis();
@@ -34,7 +34,7 @@ export async function appendSessionMessage(
   if (!client) return;
   const key = `session:${sessionId}:messages`;
   await client.rpush(key, JSON.stringify(message));
-  await client.expire(key, SESSION_TTL_MS);
+  await client.expire(key, SESSION_TTL_S);
 }
 
 export async function checkRateLimit(
@@ -45,7 +45,7 @@ export async function checkRateLimit(
   const key = `rate:${sessionId}`;
   const count = await client.incr(key);
   if (count === 1) {
-    await client.expire(key, RATE_LIMIT_WINDOW_MS);
+    await client.expire(key, RATE_LIMIT_WINDOW_S);
   }
   const remaining = Math.max(0, RATE_LIMIT_MAX - count);
   return { allowed: count <= RATE_LIMIT_MAX, remaining };

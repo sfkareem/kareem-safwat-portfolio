@@ -23,8 +23,8 @@ export const QRShare = ({ url }: QRShareProps) => {
     ref.current.innerHTML = "";
 
     const qr = new QRCodeStyling({
-      width: 150,
-      height: 150,
+      width: 64,
+      height: 64,
       data: url,
       type: "svg",
       margin: 0,
@@ -55,21 +55,17 @@ export const QRShare = ({ url }: QRShareProps) => {
         <TooltipTrigger asChild>
           <button 
             onClick={handleDownloadPng}
-            className="relative hover:scale-105 transition-transform cursor-pointer group flex items-center justify-center"
+            className="relative hover:opacity-80 transition-opacity cursor-pointer group flex items-center gap-2"
             aria-label="Download QR Code as PNG"
           >
-            <div ref={ref} className="dark:invert pointer-events-none" />
-            <div className="absolute inset-0 bg-black/5 dark:bg-white/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-black/50 dark:text-white/50">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                <polyline points="7 10 12 15 17 10"/>
-                <line x1="12" x2="12" y1="15" y2="3"/>
-              </svg>
-            </div>
+            <div ref={ref} className="dark:invert pointer-events-none size-10 md:size-12" />
+            <span className="text-[10px] text-muted-foreground uppercase tracking-wider hidden md:inline">
+              Share Card
+            </span>
           </button>
         </TooltipTrigger>
         <TooltipContent side="bottom">
-          <p>Click to download QR Code as PNG</p>
+          <p>Download business card QR</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
