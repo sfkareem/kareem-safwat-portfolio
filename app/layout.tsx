@@ -4,6 +4,7 @@ import Script from 'next/script';
 import './globals.css'; // Global styles
 import { ThemeProvider } from '@/components/theme-provider';
 import { AIChatWidget } from '@/components/ui/AIChatWidget';
+import { Analytics } from "@vercel/analytics/react"
 import { ReactLenisProvider } from '@/components/ReactLenisProvider';
 import 'lenis/dist/lenis.css';
 
@@ -53,6 +54,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
           </ReactLenisProvider>
           <AIChatWidget />
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
