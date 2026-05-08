@@ -5,11 +5,12 @@ import { GlowyWavesHero } from "@/components/ui/glowy-waves-hero-shadcnui";
 import { MergedHero } from "@/components/MergedHero";
 import { Timeline } from "@/components/ui/timeline";
 import { SkillsSection } from "@/components/SkillsSection";
+import { StatsSection } from "@/components/StatsSection";
+import { FAQSection } from "@/components/FAQSection";
 import { CertificationsSection } from "@/components/CertificationsSection";
 import { ContactSection } from "@/components/ContactSection";
 import { FloatingFooter } from "@/components/ui/floating-footer";
 import portfolioData from "@/data/portfolio.json";
-import "@/lib/firebase";
 import { useState, useEffect } from "react";
 
 export default function CivilPage() {
@@ -79,7 +80,11 @@ export default function CivilPage() {
 
           <SkillsSection category="civil" />
 
+          <StatsSection category="civil" />
+
           <CertificationsSection category="civil" isLoading={isLoading} />
+
+          <FAQSection category="civil" />
         </div>
         <ContactSection />
         <FloatingFooter />

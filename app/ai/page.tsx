@@ -4,10 +4,10 @@ import FloatingNav from "@/components/ui/floating-nav";
 import { AIHero } from "@/components/AIHero";
 import { FeaturedProjects } from "@/components/FeaturedProjects";
 import { SkillsSection } from "@/components/SkillsSection";
+import { FAQSection } from "@/components/FAQSection";
 import { CertificationsSection } from "@/components/CertificationsSection";
 import { ContactSection } from "@/components/ContactSection";
 import { FloatingFooter } from "@/components/ui/floating-footer";
-import "@/lib/firebase";
 import { useState, useEffect } from "react";
 
 export default function AIPage() {
@@ -31,6 +31,8 @@ export default function AIPage() {
           <FeaturedProjects />
           <SkillsSection category="ai" />
           <CertificationsSection category="ai" isLoading={isLoading} />
+
+          <FAQSection category="ai" />
         </div>
         <ContactSection />
         <FloatingFooter />

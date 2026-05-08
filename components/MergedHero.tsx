@@ -8,15 +8,6 @@ import Image from "next/image";
 
 import portfolioData from "@/data/portfolio.json";
 
-type Highlight = { title: string; description: string; };
-
-const highlights: Highlight[] = [
-  { title: "Experience", description: `${portfolioData.statistics.yearsOfExperience} Years of Professional Experience` },
-  { title: "Project Value", description: `${portfolioData.statistics.projectsValue} in Managed Projects Value` },
-  { title: "Bid Success", description: `${portfolioData.statistics.bidSuccessRate} Average Bid Success Rate` },
-  { title: "Cost Savings", description: `${portfolioData.statistics.costReduction} Average Project Cost Reduction` },
-];
-
 export function MergedHero() {
   const [titleNumber, setTitleNumber] = useState(0);
   const titles = useMemo(
@@ -102,25 +93,6 @@ export function MergedHero() {
             >
               {portfolioData.personal.professionalStatement}
             </motion.p>
-          </div>
-
-          <div className="grid gap-6 sm:grid-cols-2 max-w-3xl mx-auto md:mx-0">
-            {highlights.map((item, index) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4, delay: 0.4 + (0.1 * index) }}
-                className="relative space-y-1 text-center md:text-left"
-              >
-                <p className="text-[clamp(0.55rem,1vw,0.7rem)] font-semibold uppercase tracking-[0.25em] text-foreground/40">
-                  {item.title}
-                </p>
-                <p className="text-[clamp(0.8rem,1.5vw,1rem)] font-medium leading-relaxed text-foreground/90">
-                  {item.description}
-                </p>
-              </motion.div>
-            ))}
           </div>
 
           <motion.div
