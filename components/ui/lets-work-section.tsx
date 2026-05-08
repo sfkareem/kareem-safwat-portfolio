@@ -5,8 +5,7 @@ import { useState, useRef } from "react"
 import { motion, AnimatePresence, useScroll, useTransform } from "motion/react"
 import { ArrowUpRight, Mail, Phone, MapPin, Send, CheckCircle2, Loader2 } from "lucide-react"
 import portfolioData from "@/data/portfolio.json"
-import { db, handleFirestoreError, OperationType } from "@/lib/firebase"
-import { collection, addDoc, serverTimestamp } from "firebase/firestore"
+import { saveContactInquiry } from "@/lib/db"
 
 export function LetsWorkTogether() {
   const containerRef = useRef<HTMLElement>(null)
@@ -48,15 +47,11 @@ export function LetsWorkTogether() {
     setSubmitStatus("idle")
 
     try {
-      const path = "contacts"
-      await addDoc(collection(db, path), {
-        ...formData,
-        createdAt: serverTimestamp(),
-      })
+      await saveContactInquiry(formData)
       setSubmitStatus("success")
       setFormData({ name: "", email: "", phone: "", message: "" })
     } catch (error) {
-      handleFirestoreError(error, OperationType.WRITE, "contacts")
+      console.error("Contact save error:", error)
       setSubmitStatus("error")
     } finally {
       setIsSubmitting(false)
