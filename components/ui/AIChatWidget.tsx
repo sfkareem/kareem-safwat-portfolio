@@ -1,34 +1,31 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useChat } from "ai/react";
 import { MessageCircle, X, Send, Bot, User, Loader2, RefreshCcw, Copy, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 import ReactMarkdown from "react-markdown";
 import { motion, AnimatePresence } from "motion/react";
 
-let sessionId = "";
-function getSessionId() {
-  if (sessionId) return sessionId;
-  const stored = localStorage.getItem("agent-session-id");
-  if (stored) {
-    sessionId = stored;
-    return sessionId;
-  }
-  sessionId = crypto.randomUUID();
-  localStorage.setItem("agent-session-id", sessionId);
-  return sessionId;
-}
-
 export function AIChatWidget() {
   const [isOpen, setIsOpen] = React.useState(false);
   const [copiedIndex, setCopiedIndex] = React.useState<number | null>(null);
+  const [sessionId, setSessionId] = React.useState<string>("");
   const messagesEndRef = React.useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let id = localStorage.getItem("agent-session-id");
+    if (!id) {
+      id = crypto.randomUUID();
+      localStorage.setItem("agent-session-id", id);
+    }
+    setSessionId(id);
+  }, []);
 
   const { messages, input, handleInputChange, handleSubmit, isLoading, setMessages, error } =
     useChat({
       api: "/api/chat",
-      body: { sessionId: getSessionId() },
+      body: { sessionId },
       initialMessages: [
         {
           id: "welcome",
