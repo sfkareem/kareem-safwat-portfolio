@@ -2,7 +2,6 @@
 
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import { motion } from "motion/react"
 import { ArrowRight, HardHat, Code2 } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
 import { FloatingFooter } from "@/components/ui/floating-footer"
@@ -60,7 +59,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="mt-16 w-full max-w-3xl">
+        <div className="mt-16 w-full max-w-4xl">
           <Separator className="mb-6" />
           <div className="flex flex-col items-center gap-4 md:flex-row md:justify-between">
             <div className="flex items-center gap-4">
@@ -71,6 +70,9 @@ export default function Home() {
               <span className="text-sm font-semibold md:text-base">
                 KAREEM SAFWAT
               </span>
+              {baseUrl && (
+                <QRShare url={`${baseUrl}/businesscard`} />
+              )}
             </div>
             <div className="flex items-center gap-3">
               <Link
@@ -88,17 +90,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-
-        {baseUrl && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="mt-12"
-          >
-            <QRShare url={`${baseUrl}/businesscard`} />
-          </motion.div>
-        )}
       </div>
 
       <FloatingFooter />
