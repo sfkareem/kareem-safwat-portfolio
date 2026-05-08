@@ -281,6 +281,16 @@
       "image": "https://media.licdn.com/dms/image/v2/D4D2DAQEZ1aNSfWD4Kw/profile-treasury-image-shrink_800_800/B4DZz7LzKKKQAY-/0/1773740701271?e=1774627200&v=beta&t=qoMQ-NPyr_UAjSe7KUH6-yvs0SD29TudprgzbbQv_nY"
     }
   ],
+  "projects": [
+    {
+      "name": "Controls Academy",
+      "category": "ai",
+      "url": "https://controlsacademy.net/",
+      "logo": "https://controlsacademy.net/logo.png",
+      "description": "A comprehensive educational platform built from the ground up, featuring AI-powered workflows and automated technical training systems.",
+      "technologies": ["React", "Next.js", "AI Vibe Coding", "Agentic Software Development"]
+    }
+  ],
   "trustedBy": [
     {
       "name": "Controls Academy",
