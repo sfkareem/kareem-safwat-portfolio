@@ -41,6 +41,7 @@ export function getContactInfo() {
 }
 
 export function searchPortfolio(query: string) {
+  if (!query || !query.trim()) return [];
   const q = query.toLowerCase();
   const results: { section: string; match: string }[] = [];
 
