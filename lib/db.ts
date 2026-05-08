@@ -12,7 +12,7 @@ export async function saveContactInquiry(data: {
     VALUES (${name}, ${email}, ${phone ?? null}, ${message})
     RETURNING id, created_at
   `;
-  return result.rows[0] as { id: string; created_at: string };
+  return result.rows[0] as { id: number; created_at: string };
 }
 
 export async function createContactsTable() {
