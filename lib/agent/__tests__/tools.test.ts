@@ -88,6 +88,16 @@ describe("searchPortfolio", () => {
     expect(result.length).toBeGreaterThan(0);
   });
 
+  it("returns empty array for empty query", () => {
+    const result = searchPortfolio("");
+    expect(result).toEqual([]);
+  });
+
+  it("returns empty array for whitespace query", () => {
+    const result = searchPortfolio("   ");
+    expect(result).toEqual([]);
+  });
+
   it("returns empty array for no match", () => {
     const result = searchPortfolio("xyznonexistent123");
     expect(result).toEqual([]);
