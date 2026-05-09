@@ -2,18 +2,14 @@
 
 import React from "react";
 import QRCodeStyling from "qr-code-styling";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+
 
 interface QRShareProps {
   url: string;
+  size?: string;
 }
 
-export const QRShare = ({ url }: QRShareProps) => {
+export const QRShare = ({ url, size }: QRShareProps) => {
   const ref = React.useRef<HTMLDivElement | null>(null);
   const [qrCode, setQrCode] = React.useState<QRCodeStyling | null>(null);
 
@@ -50,25 +46,16 @@ export const QRShare = ({ url }: QRShareProps) => {
   };
 
   return (
-    <TooltipProvider delayDuration={100}>
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <button 
-            onClick={handleDownloadPng}
-            className="flex items-center justify-center hover:opacity-80 transition-opacity cursor-pointer"
-            aria-label="Download QR Code as PNG"
-          >
-            <div
-              ref={ref}
-              className="dark:invert pointer-events-none overflow-hidden"
-              style={{ width: "clamp(1.5rem, 1rem + 1.5vw, 3rem)", height: "clamp(1.5rem, 1rem + 1.5vw, 3rem)" }}
-            />
-          </button>
-        </TooltipTrigger>
-        <TooltipContent side="bottom">
-          <p>Download business card QR</p>
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+    <button 
+      onClick={handleDownloadPng}
+      className={"flex items-center justify-center hover:opacity-80 transition-opacity cursor-pointer " + (size === "100%" ? "w-full h-full" : "")}
+      aria-label="Download QR Code as PNG"
+    >
+      <div
+        ref={ref}
+        className="dark:invert pointer-events-none overflow-hidden flex items-center justify-center [&>svg]:w-full [&>svg]:h-full"
+        style={{ width: size || "clamp(2.5rem, 1.5rem + 2.5vw, 4rem)", height: size || "clamp(2.5rem, 1.5rem + 2.5vw, 4rem)" }}
+      />
+    </button>
   );
 };

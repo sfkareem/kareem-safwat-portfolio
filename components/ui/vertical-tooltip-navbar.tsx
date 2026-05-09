@@ -72,7 +72,6 @@ export function VerticalTooltipNavbar() {
       return [
         { label: "Home", href: "#home", icon: <Home className="size-full" /> },
         { label: "Projects", href: "#projects", icon: <Rocket className="size-full" /> },
-        { label: "Terminal", href: "#terminal", icon: <span className="font-mono text-xs leading-none">{">_"}</span> },
         { label: "Expertise", href: "#skills", icon: <Wrench className="size-full" /> },
         { label: "Certifications", href: "#certifications", icon: <Award className="size-full" /> },
         { label: "Contact", href: "#contact", icon: <Mail className="size-full" /> },

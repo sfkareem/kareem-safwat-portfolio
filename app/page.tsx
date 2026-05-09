@@ -31,10 +31,12 @@ export default function Home() {
           </div>
 
           <div className="items-center gap-6 md:flex md:justify-center">
-            <h1 className="flex leading-none font-light tracking-wider" style={{ fontSize: "clamp(1.8rem, 1rem + 5vw, 8rem)" }}>
+            <h1 className="flex flex-wrap leading-none font-light tracking-wider" style={{ fontSize: "clamp(1.8rem, 1rem + 5vw, 8rem)" }}>
               <span>ENGINEER</span>
-              <HardHat strokeWidth={1.5} className="text-primary" style={{ width: "clamp(1.5rem, 1rem + 2vw, 7rem)", height: "clamp(1.5rem, 1rem + 2vw, 7rem)" }} />
-              <span>NG</span>
+              <span className="inline-flex items-center" style={{ whiteSpace: "nowrap" }}>
+                <HardHat strokeWidth={1.5} className="text-primary" style={{ width: "1em", height: "1em" }} />
+                NG
+              </span>
             </h1>
             <p className="text-muted-foreground max-w-[220px] pt-4 leading-5 md:pt-8" style={{ fontSize: "clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem)" }}>
               FIDIC contracts, CCS Candy, BidBow, PlanSwift — precision in every estimate.
@@ -52,9 +54,11 @@ export default function Home() {
 
           <div className="items-center gap-6 md:flex md:justify-center">
             <h1 className="flex leading-none font-light tracking-wider" style={{ fontSize: "clamp(1.8rem, 1rem + 5vw, 8rem)" }}>
-              <span>C</span>
-              <Code2 strokeWidth={1.5} className="text-primary" style={{ width: "clamp(1.5rem, 1rem + 2vw, 7rem)", height: "clamp(1.5rem, 1rem + 2vw, 7rem)" }} />
-              <span>DER</span>
+              <span className="inline-flex items-center" style={{ whiteSpace: "nowrap" }}>
+                C
+                <Code2 strokeWidth={1.5} className="text-primary" style={{ width: "1em", height: "1em" }} />
+                DER
+              </span>
             </h1>
           </div>
         </div>
@@ -71,7 +75,9 @@ export default function Home() {
                 KAREEM SAFWAT
               </span>
               {baseUrl && (
-                <QRShare url={`${baseUrl}/businesscard`} />
+                <div className="hidden md:flex">
+                  <QRShare url={`${baseUrl}/businesscard`} size="clamp(2.5rem, 2rem + 6vw, 12rem)" />
+                </div>
               )}
             </div>
             <div className="flex items-center gap-3">
@@ -90,6 +96,13 @@ export default function Home() {
                 AI Portfolio <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>
+            {baseUrl && (
+              <div className="md:hidden self-stretch w-full">
+                <div className="w-full aspect-square">
+                  <QRShare url={`${baseUrl}/businesscard`} size="100%" />
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
