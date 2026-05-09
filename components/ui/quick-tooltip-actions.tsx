@@ -1,15 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { MessageCircle, PersonStanding, User, Users } from "lucide-react";
+import { MessageCircle, PersonStanding, Users } from "lucide-react";
 
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { Button } from "@/components/ui/button";
+
+
 import { useState } from "react";
 
 const TickerOptions = [
@@ -74,23 +69,7 @@ export const Component = ()=> {
   const [ticker, setTicker] = useState("AAPL");
   return (
     <div className="flex w-full justify-center items-center h-[400px]">
-      <TooltipProvider>
-        <Tooltip key={ticker} delayDuration={0.2}>
-          <TooltipTrigger asChild>
-            <Button variant="outline" className="rounded-full" size={"icon"}>
-              <User className={"size-4"} />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent
-            side="right"
-            sideOffset={0}
-            align="center"
-            className="p-0 bg-popover rounded-xl ml-1"
-          >
-            <QuickTickerOptions ticker={ticker} />
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
+      <QuickTickerOptions ticker={ticker} />
     </div>
   );
 }
