@@ -194,6 +194,7 @@ export default function TerminalShell() {
                 }
                 chatMessagesRef.current = msgs;
                 setChatMessages(msgs);
+                saveHistory(msgs);
               }
             } catch {
               // skip
@@ -201,6 +202,9 @@ export default function TerminalShell() {
           }
         }
       }
+
+      // Persist final state after stream ends
+      saveHistory(chatMessagesRef.current);
     } catch (err: any) {
       if (err.name !== "AbortError") {
         const msgs = [...chatMessagesRef.current];
@@ -254,11 +258,13 @@ export default function TerminalShell() {
       } else if (cmd === "clear") {
         setEntries([]);
       } else if (cmd === "reset") {
-        setEntries([]);
-        setChatMessages([]);
-        saveHistory([]);
-        chatMessagesRef.current = [];
-        setHasStarted(false);
+        if (confirm("Clear all chat history? This cannot be undone.")) {
+          setEntries([]);
+          setChatMessages([]);
+          saveHistory([]);
+          chatMessagesRef.current = [];
+          setHasStarted(false);
+        }
       } else {
         setEntries((prev) => [
           ...prev,
@@ -398,9 +404,11 @@ export default function TerminalShell() {
         <button
           onClick={() => {
             if (confirm("Clear all chat history? This cannot be undone.")) {
+              setEntries([]);
               setChatMessages([]);
               saveHistory([]);
               chatMessagesRef.current = [];
+              setHasStarted(false);
             }
           }}
           className="ml-4 text-zinc-700 hover:text-zinc-400 transition-colors underline underline-offset-2"
