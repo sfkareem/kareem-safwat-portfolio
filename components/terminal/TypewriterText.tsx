@@ -36,12 +36,22 @@ export function TypewriterText({
   text,
   speed = 25,
   className,
+  onDone,
 }: {
   text: string;
   speed?: number;
   className?: string;
+  onDone?: () => void;
 }) {
   const { displayed, isTyping } = useTypewriter(text, speed);
+  const doneRef = useRef(onDone);
+  doneRef.current = onDone;
+
+  useEffect(() => {
+    if (!isTyping && displayed === text && text.length > 0) {
+      doneRef.current?.();
+    }
+  }, [isTyping, displayed, text]);
   return (
     <span className={cn(className)}>
       {displayed}

@@ -24,10 +24,10 @@ type Message = {
   timestamp: number;
 };
 
-const WELCOME_SEQUENCE = [
-  "$ ./assistant --interactive",
-  "> Type your questions to learn about Kareem's work.",
-  '> Hello! I\'m Kareem\'s AI assistant. Ask me anything about his work, skills, or experience.',
+const WELCOME_SEQUENCE: { cmd: string; out: string }[] = [
+  { cmd: "./assistant --interactive", out: "" },
+  { cmd: "", out: "Type your questions to learn about Kareem's work." },
+  { cmd: "", out: "Hello! I'm Kareem's AI assistant. Ask me anything about his work, skills, or experience." },
 ];
 
 const STORAGE_KEY = "ai-terminal-history";
@@ -80,7 +80,7 @@ export default function TerminalShell() {
           await new Promise((r) => setTimeout(r, 600));
           setEntries((prev) => [
             ...prev,
-            { id: crypto.randomUUID(), command: "", output: line, isTyping: false },
+            { id: crypto.randomUUID(), command: line.cmd, output: line.out, isTyping: false },
           ]);
         }
       };
@@ -258,6 +258,7 @@ export default function TerminalShell() {
         setChatMessages([]);
         saveHistory([]);
         chatMessagesRef.current = [];
+        setHasStarted(false);
       } else {
         setEntries((prev) => [
           ...prev,
@@ -320,7 +321,17 @@ export default function TerminalShell() {
               <div className="text-zinc-300 text-sm leading-relaxed whitespace-pre-wrap">
                 <span className="text-zinc-500">&gt;</span>{" "}
                 {entry.isTyping ? (
-                  <TypewriterText text={entry.output} speed={15} />
+                  <TypewriterText
+                    text={entry.output}
+                    speed={15}
+                    onDone={() =>
+                      setEntries((prev) =>
+                        prev.map((e) =>
+                          e.id === entry.id ? { ...e, isTyping: false } : e
+                        )
+                      )
+                    }
+                  />
                 ) : (
                   entry.output
                 )}
@@ -330,26 +341,7 @@ export default function TerminalShell() {
         ))}
 
         {/* Chat messages */}
-        {chatMessages.length > 0 && activeTab !== "./agent" && chatMessages.map((msg) => (
-          <div key={msg.id} className="mb-3">
-            {msg.role === "user" ? (
-              <div>
-                <span className="text-green-400 text-sm">$</span>{" "}
-                <span className="text-zinc-200 text-sm">{msg.content}</span>
-              </div>
-            ) : (
-              <div className="text-zinc-300 text-sm leading-relaxed whitespace-pre-wrap">
-                <span className="text-zinc-500">&gt;</span>{" "}
-                {msg.content || (
-                  <span className="inline-block size-2 bg-green-400 rounded-full animate-pulse" />
-                )}
-              </div>
-            )}
-          </div>
-        ))}
-
-        {/* Chat messages shown in ./agent tab */}
-        {chatMessages.length > 0 && activeTab === "./agent" && chatMessages.map((msg) => (
+        {chatMessages.length > 0 && chatMessages.map((msg) => (
           <div key={msg.id} className="mb-3">
             {msg.role === "user" ? (
               <div>
