@@ -3,7 +3,7 @@ import { Inter, Space_Grotesk } from 'next/font/google';
 import Script from 'next/script';
 import './globals.css'; // Global styles
 import { ThemeProvider } from '@/components/theme-provider';
-import { AIChatWidget } from '@/components/ui/AIChatWidget';
+import { AIChatWidgetWrapper } from '@/components/ui/AIChatWidgetWrapper';
 import { Analytics } from "@vercel/analytics/react"
 import { ReactLenisProvider } from '@/components/ReactLenisProvider';
 import 'lenis/dist/lenis.css';
@@ -52,7 +52,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
               {children}
             </div>
           </ReactLenisProvider>
-          <AIChatWidget />
+          <AIChatWidgetWrapper />
         </ThemeProvider>
         <Analytics />
       </body>
