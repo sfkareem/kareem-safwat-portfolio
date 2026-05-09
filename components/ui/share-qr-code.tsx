@@ -13,7 +13,6 @@ import {
 import {
   Tooltip,
   TooltipContent,
-  TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
@@ -115,7 +114,6 @@ export const ShareQRCode = ({ url }: ShareQRCodeProps) => {
             </span>
           </div>
 
-          <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button className="size-7 shrink-0" size="icon" variant="ghost" onClick={copyToClipboard}>
@@ -150,7 +148,6 @@ export const ShareQRCode = ({ url }: ShareQRCodeProps) => {
                 <p className="text-xs">{copied ? "Copied!" : "Copy"}</p>
               </TooltipContent>
             </Tooltip>
-          </TooltipProvider>
         </div>
 
         <div className="flex w-full flex-col gap-2.5">
@@ -186,7 +183,6 @@ export const ShareQRCode = ({ url }: ShareQRCodeProps) => {
                   Scalable Vector Graphic
                 </p>
               </div>
-              <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Button
@@ -218,7 +214,6 @@ export const ShareQRCode = ({ url }: ShareQRCodeProps) => {
                     <p className="text-xs">Download SVG</p>
                   </TooltipContent>
                 </Tooltip>
-              </TooltipProvider>
             </div>
           </div>
           <div className="relative flex w-full items-center justify-start rounded-xl p-3.5 ring ring-border">
@@ -253,7 +248,6 @@ export const ShareQRCode = ({ url }: ShareQRCodeProps) => {
                 </p>
               </div>
 
-              <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Button
@@ -285,7 +279,6 @@ export const ShareQRCode = ({ url }: ShareQRCodeProps) => {
                     <p className="text-xs">Download PNG</p>
                   </TooltipContent>
                 </Tooltip>
-              </TooltipProvider>
             </div>
           </div>
         </div>

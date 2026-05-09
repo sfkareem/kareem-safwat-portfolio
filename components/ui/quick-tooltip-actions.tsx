@@ -6,7 +6,6 @@ import { MessageCircle, PersonStanding, User, Users } from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
-  TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
@@ -74,7 +73,6 @@ export const Component = ()=> {
   const [ticker, setTicker] = useState("AAPL");
   return (
     <div className="flex w-full justify-center items-center h-[400px]">
-      <TooltipProvider>
         <Tooltip key={ticker} delayDuration={0.2}>
           <TooltipTrigger asChild>
             <Button variant="outline" className="rounded-full" size={"icon"}>
@@ -90,7 +88,6 @@ export const Component = ()=> {
             <QuickTickerOptions ticker={ticker} />
           </TooltipContent>
         </Tooltip>
-      </TooltipProvider>
     </div>
   );
 }
