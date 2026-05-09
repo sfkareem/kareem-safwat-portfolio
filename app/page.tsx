@@ -19,21 +19,21 @@ export default function Home() {
     <main className="min-h-screen bg-background relative overflow-hidden">
       <div className="absolute inset-0 z-0 bg-[radial-gradient(circle,_var(--foreground)_1px,_transparent_1px)] opacity-15 [background-size:20px_20px] dark:bg-[radial-gradient(circle,_var(--foreground)_1px,_transparent_1px)]" />
 
-      <div className="relative z-10 flex min-h-screen flex-col items-center justify-center px-6" style={{ paddingBlock: "clamp(1rem, 1rem + 2vw, 5rem)" }}>
+      <div className="relative z-10 flex min-h-screen flex-col items-center px-6" style={{ paddingTop: "clamp(1.5rem, 1rem + 3vw, 4rem)" }}>
         <div className="flex w-full max-w-6xl flex-col items-center" style={{ gap: "clamp(0.5rem, 0.5rem + 1vw, 1.5rem)" }}>
           <div className="items-center gap-6 md:flex">
             <p className="text-muted-foreground max-w-[200px] text-start leading-5 md:text-right" style={{ fontSize: "clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem)" }}>
               Senior Quantity Surveyor based in Cairo, Egypt — delivering precise cost management and tendering excellence.
             </p>
-            <h1 className="leading-none font-light tracking-wider" style={{ fontSize: "clamp(2.5rem, 1.5rem + 8vw, 8rem)" }}>
+            <h1 className="leading-none font-light tracking-wider" style={{ fontSize: "clamp(1.8rem, 1rem + 5vw, 8rem)" }}>
               CIVIL
             </h1>
           </div>
 
           <div className="items-center gap-6 md:flex md:justify-center">
-            <h1 className="flex leading-none font-light tracking-wider" style={{ fontSize: "clamp(2.5rem, 1.5rem + 8vw, 8rem)" }}>
+            <h1 className="flex leading-none font-light tracking-wider" style={{ fontSize: "clamp(1.8rem, 1rem + 5vw, 8rem)" }}>
               <span>ENGINEER</span>
-              <HardHat strokeWidth={1.5} className="text-primary" style={{ width: "clamp(2.5rem, 1.5rem + 3vw, 7rem)", height: "clamp(2.5rem, 1.5rem + 3vw, 7rem)" }} />
+              <HardHat strokeWidth={1.5} className="text-primary" style={{ width: "clamp(1.5rem, 1rem + 2vw, 7rem)", height: "clamp(1.5rem, 1rem + 2vw, 7rem)" }} />
               <span>NG</span>
             </h1>
             <p className="text-muted-foreground max-w-[220px] pt-4 leading-5 md:pt-8" style={{ fontSize: "clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem)" }}>
@@ -45,15 +45,15 @@ export default function Home() {
             <p className="text-muted-foreground max-w-[200px] text-start leading-5 md:text-right" style={{ fontSize: "clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem)" }}>
               AI Vibe Coder building intelligent, scalable applications with agentic workflows.
             </p>
-            <h1 className="leading-none font-light tracking-wider" style={{ fontSize: "clamp(2.5rem, 1.5rem + 8vw, 8rem)" }}>
+            <h1 className="leading-none font-light tracking-wider" style={{ fontSize: "clamp(1.8rem, 1rem + 5vw, 8rem)" }}>
               AI VIBE
             </h1>
           </div>
 
           <div className="items-center gap-6 md:flex md:justify-center">
-            <h1 className="flex leading-none font-light tracking-wider" style={{ fontSize: "clamp(2.5rem, 1.5rem + 8vw, 8rem)" }}>
+            <h1 className="flex leading-none font-light tracking-wider" style={{ fontSize: "clamp(1.8rem, 1rem + 5vw, 8rem)" }}>
               <span>C</span>
-              <Code2 strokeWidth={1.5} className="text-primary" style={{ width: "clamp(2.5rem, 1.5rem + 3vw, 7rem)", height: "clamp(2.5rem, 1.5rem + 3vw, 7rem)" }} />
+              <Code2 strokeWidth={1.5} className="text-primary" style={{ width: "clamp(1.5rem, 1rem + 2vw, 7rem)", height: "clamp(1.5rem, 1rem + 2vw, 7rem)" }} />
               <span>DER</span>
             </h1>
           </div>

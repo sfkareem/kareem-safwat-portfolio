@@ -55,13 +55,13 @@ export const QRShare = ({ url }: QRShareProps) => {
         <TooltipTrigger asChild>
           <button 
             onClick={handleDownloadPng}
-            className="relative hover:opacity-80 transition-opacity cursor-pointer"
+            className="flex items-center justify-center hover:opacity-80 transition-opacity cursor-pointer"
             aria-label="Download QR Code as PNG"
           >
             <div
               ref={ref}
-              className="dark:invert pointer-events-none"
-              style={{ width: "clamp(2rem, 1.5rem + 1.5vw, 3rem)", height: "clamp(2rem, 1.5rem + 1.5vw, 3rem)" }}
+              className="dark:invert pointer-events-none overflow-hidden"
+              style={{ width: "clamp(1.5rem, 1rem + 1.5vw, 3rem)", height: "clamp(1.5rem, 1rem + 1.5vw, 3rem)" }}
             />
           </button>
         </TooltipTrigger>
