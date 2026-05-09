@@ -79,6 +79,7 @@ export default function TerminalShell() {
   const [isLoading, setIsLoading] = useState(false);
   const [chatMessages, setChatMessages] = useState<Message[]>(loadHistory);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [minimized, setMinimized] = useState(false);
   const bodyRef = useRef<HTMLDivElement>(null);
   const abortRef = useRef<AbortController | null>(null);
   const chatMessagesRef = useRef<Message[]>(chatMessages);
@@ -358,7 +359,7 @@ export default function TerminalShell() {
   };
 
   return (
-    <div className="h-screen bg-zinc-950 text-zinc-100 font-mono flex flex-col overflow-hidden">
+    <div className="h-screen bg-zinc-950 text-zinc-100 font-mono relative overflow-hidden">
       {/* Mac terminal-style scrollbar */}
       <style>{`
         .terminal-body::-webkit-scrollbar {
@@ -384,11 +385,29 @@ export default function TerminalShell() {
         <div className="flex items-center gap-1.5">
           <TerminalWindowButton color="bg-red-500" hoverContent="✕" onClick={() => window.location.href = "/"} />
           <TerminalWindowButton color="bg-yellow-500" hoverContent="⤢" onClick={() => document.documentElement.requestFullscreen?.()} />
-          <TerminalWindowButton color="bg-green-500" hoverContent={isFullscreen ? "⤡" : "−"} />
+          <TerminalWindowButton color="bg-green-500" hoverContent={minimized ? "□" : "−"} onClick={() => setMinimized((p) => !p)} />
         </div>
         <span className="text-xs text-zinc-600 ml-2">ai/terminal</span>
       </div>
 
+      {/* Minimized pill */}
+      {minimized && (
+        <button
+          onClick={() => setMinimized(false)}
+          className="flex-1 flex items-center justify-center"
+        >
+          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-900 border border-zinc-700 text-zinc-400 text-xs hover:text-zinc-200 hover:border-zinc-500 transition-colors shadow-lg">
+            <span className="flex items-center gap-1">
+              <span className="inline-block size-2 rounded-full bg-red-500/60" />
+              <span className="inline-block size-2 rounded-full bg-yellow-500/60" />
+              <span className="inline-block size-2 rounded-full bg-green-500/60" />
+            </span>
+            ai/terminal
+          </div>
+        </button>
+      )}
+
+      {!minimized && (<>
       {/* Tab bar */}
       <div className="flex flex-wrap gap-2 px-4 py-2 border-b border-zinc-800 bg-zinc-950/90 shrink-0">
         {TAB_LABELS.map((tab) => (
@@ -492,7 +511,7 @@ export default function TerminalShell() {
           </form>
         </div>
       )}
-
+      </>)}
     </div>
   );
 }
