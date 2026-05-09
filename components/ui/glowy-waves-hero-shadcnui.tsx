@@ -1,5 +1,5 @@
 import { motion, type Variants } from "motion/react";
-import { ArrowRight, Sparkles } from "lucide-react";
+
 import { useEffect, useRef } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -21,12 +21,6 @@ const highlightPills = [
   "Contracts"
 ] as const;
 
-const heroStats: { label: string; value: string }[] = [
-  { label: "Years Experience", value: "8+" },
-  { label: "Projects Delivered", value: "50+" },
-  { label: "Total Value", value: "$1B+" },
-];
-
 const containerVariants: Variants = {
   hidden: { opacity: 0, y: 24 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, staggerChildren: 0.12 } },
@@ -35,11 +29,6 @@ const containerVariants: Variants = {
 const itemVariants: Variants = {
   hidden: { opacity: 0, y: 24 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-};
-
-const statsVariants: Variants = {
-  hidden: { opacity: 0, scale: 0.95 },
-  visible: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: "easeOut", staggerChildren: 0.08 } },
 };
 
 export function GlowyWavesHero({ children }: { children?: React.ReactNode }) {

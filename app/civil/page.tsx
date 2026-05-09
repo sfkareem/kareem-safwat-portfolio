@@ -62,6 +62,7 @@ export default function CivilPage() {
 
   return (
     <main className="min-h-screen relative overflow-x-hidden bg-background">
+      <div className="absolute inset-0 z-0 bg-[radial-gradient(circle,_var(--foreground)_1px,_transparent_1px)] opacity-15 [background-size:20px_20px] dark:bg-[radial-gradient(circle,_var(--foreground)_1px,_transparent_1px)]" />
       <VerticalTooltipNavbar />
 
       <div className="w-full transition-all duration-300">
@@ -71,7 +72,7 @@ export default function CivilPage() {
           </GlowyWavesHero>
         </section>
         
-        <div className="mx-auto w-full max-w-[1400px] px-6 md:px-24 lg:px-32 py-12 space-y-24 md:space-y-32">
+        <div className="mx-auto w-full max-w-[1400px] px-6 md:px-24 lg:px-32 py-12 space-y-[clamp(4rem,8vw,8rem)]">
           <section id="experience" className="timeline-section pt-12">
             <h2 className="text-3xl md:text-5xl font-bold mb-12 md:mb-20 tracking-tighter text-center md:text-left">Experiences</h2>
             <Timeline data={timelineData} isLoading={isLoading} />

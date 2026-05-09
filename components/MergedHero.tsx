@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { motion, type Variants } from "motion/react";
-import { ArrowUpRight, Linkedin, Mail, ArrowRight } from "lucide-react";
+import { motion } from "motion/react";
+import { ArrowUpRight, Linkedin, Briefcase, Building2, DollarSign } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { CounterNumber } from "@/lib/counter-number";
 import Image from "next/image";
 
 import portfolioData from "@/data/portfolio.json";
@@ -12,6 +13,15 @@ export function MergedHero() {
   const [titleNumber, setTitleNumber] = useState(0);
   const titles = useMemo(
     () => ["precise", "efficient", "strategic", "cost-effective", "impactful"],
+    []
+  );
+
+  const stats = useMemo(
+    () => [
+      { icon: Briefcase, value: 8, suffix: "+", label: "Years Experience" },
+      { icon: Building2, value: 50, suffix: "+", label: "Projects Delivered" },
+      { icon: DollarSign, value: 1, suffix: "B+", label: "Total Value" },
+    ],
     []
   );
 
@@ -27,7 +37,7 @@ export function MergedHero() {
   }, [titleNumber, titles]);
 
   return (
-    <div className="w-full py-6 md:py-12">
+    <div className="w-full">
       <div className="grid gap-8 md:grid-cols-2 items-center">
         
         {/* Left: Text Content */}
@@ -118,6 +128,30 @@ export function MergedHero() {
               View Resume
               <ArrowUpRight className="h-4 w-4 sm:h-5 sm:w-5" />
             </Button>
+          </motion.div>
+          {/* Stats Row */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.9 }}
+            className="flex flex-wrap items-center justify-center md:justify-start gap-6 sm:gap-10 pt-6 border-t border-border/40"
+          >
+            {stats.map((stat, i) => {
+              const Icon = stat.icon;
+              return (
+                <div key={stat.label} className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                    <Icon className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-xl font-bold leading-none">
+                      <CounterNumber value={stat.value} suffix={stat.suffix} duration={2 + i * 0.3} />
+                    </p>
+                    <p className="text-xs text-muted-foreground mt-0.5">{stat.label}</p>
+                  </div>
+                </div>
+              );
+            })}
           </motion.div>
         </div>
 
