@@ -1,8 +1,8 @@
 "use client"
 
-import { motion, AnimatePresence } from "motion/react"
-import { useRef, useState, type ReactNode } from "react"
-import { Home, Briefcase, Wrench, Award, Mail, Rocket, CommandIcon } from "lucide-react"
+import { motion } from "motion/react"
+import { useState, type ReactNode } from "react"
+import { Home, Briefcase, Wrench, Award, Mail, Rocket } from "lucide-react"
 import { ColorSelector } from "./color-selector"
 import { AnimatedThemeToggleButton } from "./animated-theme-toggle-button"
 import { cn } from "@/lib/utils"
@@ -161,187 +161,53 @@ function VerticalNavTooltip({
   isDark,
   pathname,
 }: VerticalNavTooltipProps) {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null)
-  const [coords, setCoords] = useState({ clipPath: "", translateY: 0 })
-
-  const measureRefs = useRef<(HTMLDivElement | null)[]>([])
-  const buttonRefs = useRef<(HTMLButtonElement | null)[]>([])
-
-  const [isEntering, setIsEntering] = useState(true)
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
-  const tooltipDelay = 300
-
-  const calculatePosition = (index: number) => {
-    const activeLabel = measureRefs.current[index]
-    const activeIcon = buttonRefs.current[index]
-
-    if (!activeLabel || !activeIcon) return null
-
-    const labelTop = activeLabel.offsetTop
-    const labelHeight = activeLabel.offsetHeight
-    const labelCenter = labelTop + labelHeight / 2
-
-    const iconTop = activeIcon.offsetTop
-    const iconHeight = activeIcon.offsetHeight
-    const iconCenter = iconTop + iconHeight / 2
-
-    const totalHeight = measureRefs.current.reduce(
-      (acc, el) => acc + (el?.offsetHeight || 0),
-      0
-    )
-
-    const cTop = (labelTop / totalHeight) * 100
-    const cBottom = 100 - ((labelTop + labelHeight) / totalHeight) * 100
-
-    return {
-      clipPath: `inset(${cTop}% 0 ${cBottom}% 0 round 8px)`,
-      translateY: iconCenter - labelCenter,
-    }
-  }
-
-  const handleMouseEnter = (index: number) => {
-    const newCoords = calculatePosition(index)
-    if (!newCoords) return
-
-    if (activeIndex === null) {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current)
-      setIsEntering(true)
-
-      timeoutRef.current = setTimeout(() => {
-        setCoords(newCoords)
-        setActiveIndex(index)
-      }, tooltipDelay)
-    } else {
-      setCoords(newCoords)
-      setActiveIndex(index)
-    }
-  }
-
-  const handleMouseLeave = () => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current)
-    setActiveIndex(null)
-    setCoords({ clipPath: "", translateY: 0 })
-    setIsEntering(true)
-  }
-
   return (
-    <div className="relative" onMouseLeave={handleMouseLeave}>
-      <AnimatePresence>
-        {activeIndex !== null && coords.clipPath !== "" && (
-          <motion.div
-            className="absolute top-0 left-14"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            <motion.div
-              className={cn(
-                "rounded-lg",
-                isDark ? "bg-neutral-800" : "bg-foreground"
-              )}
-              animate={{
-                clipPath: coords.clipPath,
-                y: coords.translateY,
-              }}
-              transition={{
-                type: "spring",
-                bounce: 0,
-                duration: isEntering ? 0 : 0.4,
-              }}
-              onUpdate={() => {
-                if (isEntering) setIsEntering(false)
-              }}
-            >
-              <div className="flex flex-col items-start justify-center">
-                {items.map((item, index) => (
-                  <div
-                    key={`real-${index}`}
-                    className="flex h-10 items-center justify-center gap-3 px-4 text-sm font-medium whitespace-nowrap"
-                  >
-                    <span className={isDark ? "text-white" : "text-primary-foreground"}>
-                      {item.label}
-                    </span>
-                    <div className="flex items-center gap-0.5 text-white/40">
-                      <span className="flex items-center justify-center rounded-sm border border-white/20 px-1.5 py-0.5 text-[10px] tabular-nums">
-                        ⌘{index + 1}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          </motion.div>
+    <div className="flex flex-col items-center justify-center gap-1 rounded-2xl bg-background/80 backdrop-blur-lg border p-2 shadow-lg">
+      {/* Hub link */}
+      <Link
+        href="/"
+        className={cn(
+          "flex items-center justify-center rounded-full transition-colors hover:bg-accent",
+          isDark ? "text-white/60 hover:text-white" : "text-muted-foreground hover:text-foreground"
         )}
-      </AnimatePresence>
-
-      <div className="z-10 flex flex-col items-center justify-center gap-1 rounded-2xl bg-background/80 backdrop-blur-lg border p-2 shadow-lg">
-        {/* Hub link */}
-        <Link
-          href="/"
-          className={cn(
-            "flex items-center justify-center rounded-full transition-colors hover:bg-accent",
-            isDark ? "text-white/60 hover:text-white" : "text-muted-foreground hover:text-foreground"
-          )}
-        >
-          <div className="flex size-10 items-center justify-center p-2">
-            <HubIcon className="size-full" />
-          </div>
-        </Link>
-
-        <div className="w-6 h-px bg-border" />
-
-        {items.map((item, index) => {
-          const isActive = activeItem === item.href
-          return (
-            <button
-              key={item.href}
-              onMouseEnter={() => handleMouseEnter(index)}
-              ref={(el) => { buttonRefs.current[index] = el }}
-              onClick={() => {
-                setActiveItem(item.href)
-                const el = document.querySelector(item.href)
-                el?.scrollIntoView({ behavior: "smooth" })
-              }}
-              className={cn(
-                "flex cursor-pointer items-center justify-center rounded-full transition-colors hover:bg-accent",
-                isActive
-                  ? isDark ? "text-white" : "text-primary"
-                  : isDark ? "text-white/40 hover:text-white" : "text-muted-foreground hover:text-foreground"
-              )}
-            >
-              <div className="flex size-10 items-center justify-center p-2">
-                {item.icon}
-              </div>
-              <span className="sr-only">{item.label}</span>
-            </button>
-          )
-        })}
-
-        <div className="w-6 h-px bg-border" />
-
-        <div className="flex flex-col items-center gap-2 pt-1">
-          <ColorSelector defaultValue="default" className="opacity-40 hover:opacity-100 transition-opacity scale-75" />
-          <AnimatedThemeToggleButton className="opacity-40 hover:opacity-100 transition-opacity scale-75" />
+      >
+        <div className="flex size-10 items-center justify-center p-2">
+          <HubIcon className="size-full" />
         </div>
-      </div>
+      </Link>
 
-      {/* Measurement layer (hidden) */}
-      <div className="pointer-events-none absolute top-0 left-0 flex flex-col overflow-hidden whitespace-nowrap opacity-0">
-        {items.map((item, index) => (
-          <div
-            key={`measure-${index}`}
-            ref={(el) => { measureRefs.current[index] = el }}
-            className="flex h-10 items-center justify-center gap-3 px-4 text-sm font-medium whitespace-nowrap"
+      <div className="w-6 h-px bg-border" />
+
+      {items.map((item) => {
+        const isActive = activeItem === item.href
+        return (
+          <button
+            key={item.href}
+            onClick={() => {
+              setActiveItem(item.href)
+              const el = document.querySelector(item.href)
+              el?.scrollIntoView({ behavior: "smooth" })
+            }}
+            className={cn(
+              "flex cursor-pointer items-center justify-center rounded-full transition-colors hover:bg-accent",
+              isActive
+                ? isDark ? "text-white" : "text-primary"
+                : isDark ? "text-white/40 hover:text-white" : "text-muted-foreground hover:text-foreground"
+            )}
           >
-            <span>{item.label}</span>
-            <div className="flex items-center gap-0.5 text-white/40">
-              <span className="flex items-center justify-center rounded-sm border border-white/20 px-1.5 py-0.5 text-[10px] tabular-nums">
-                ⌘{index + 1}
-              </span>
+            <div className="flex size-10 items-center justify-center p-2">
+              {item.icon}
             </div>
-          </div>
-        ))}
+            <span className="sr-only">{item.label}</span>
+          </button>
+        )
+      })}
+
+      <div className="w-6 h-px bg-border" />
+
+      <div className="flex flex-col items-center gap-2 pt-1">
+        <ColorSelector defaultValue="default" className="opacity-40 hover:opacity-100 transition-opacity scale-75" />
+        <AnimatedThemeToggleButton className="opacity-40 hover:opacity-100 transition-opacity scale-75" />
       </div>
     </div>
   )
