@@ -77,14 +77,14 @@ export default function Home() {
             <div className="flex items-center gap-3">
               <Link
                 href="/civil"
-                className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-xs font-semibold text-primary-foreground transition-all hover:gap-3 hover:opacity-90 uppercase tracking-wider"
+                className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 font-semibold text-primary-foreground transition-all hover:gap-3 hover:opacity-90 uppercase tracking-wider"
                 style={{ fontSize: "clamp(0.7rem, 0.65rem + 0.2vw, 0.875rem)" }}
               >
                 Civil Portfolio <ArrowRight className="h-3.5 w-3.5" />
               </Link>
               <Link
                 href="/ai"
-                className="inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-xs font-semibold text-foreground transition-all hover:gap-3 hover:bg-accent uppercase tracking-wider"
+                className="inline-flex items-center gap-2 rounded-full border px-5 py-2.5 font-semibold text-foreground transition-all hover:gap-3 hover:bg-accent uppercase tracking-wider"
                 style={{ fontSize: "clamp(0.7rem, 0.65rem + 0.2vw, 0.875rem)" }}
               >
                 AI Portfolio <ArrowRight className="h-3.5 w-3.5" />
