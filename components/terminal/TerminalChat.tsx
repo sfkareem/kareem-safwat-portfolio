@@ -51,8 +51,9 @@ export function TerminalChat({
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="ask about Kareem's work..."
-            className="flex-1 bg-transparent text-sm text-zinc-200 outline-none placeholder-zinc-700"
+            className={cn("flex-1 bg-transparent text-sm text-zinc-200 outline-none placeholder-zinc-700")}
             autoFocus
+            disabled={isLoading}
           />
           <button
             type="submit"
