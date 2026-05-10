@@ -2,10 +2,16 @@
 
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import { ArrowRight, HardHat, Code2 } from "lucide-react"
+import { HardHat, Code2 } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
 import { FloatingFooter } from "@/components/ui/floating-footer"
 import { QRShare } from "@/components/ui/qr-share"
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from "@/components/v1/skiper101"
+import { ArrowIcon } from "@/components/v1/skiper99"
 
 export default function Home() {
   const [baseUrl, setBaseUrl] = useState("")
@@ -81,20 +87,34 @@ export default function Home() {
               )}
             </div>
             <div className="flex items-center gap-3">
-              <Link
-                href="/civil"
-                className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 font-semibold text-primary-foreground transition-all hover:gap-3 hover:opacity-90 uppercase tracking-wider"
-                style={{ fontSize: "clamp(0.7rem, 0.65rem + 0.2vw, 0.875rem)" }}
-              >
-                Civil Portfolio <ArrowRight className="h-3.5 w-3.5" />
-              </Link>
-              <Link
-                href="/ai"
-                className="inline-flex items-center gap-2 rounded-full border px-5 py-2.5 font-semibold text-foreground transition-all hover:gap-3 hover:bg-accent uppercase tracking-wider"
-                style={{ fontSize: "clamp(0.7rem, 0.65rem + 0.2vw, 0.875rem)" }}
-              >
-                AI Portfolio <ArrowRight className="h-3.5 w-3.5" />
-              </Link>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Link
+                    href="/civil"
+                    className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 font-semibold text-primary-foreground transition-all hover:gap-3 hover:opacity-90 uppercase tracking-wider"
+                    style={{ fontSize: "clamp(0.7rem, 0.65rem + 0.2vw, 0.875rem)" }}
+                  >
+                    Civil Portfolio <ArrowIcon className="size-3.5" />
+                  </Link>
+                </TooltipTrigger>
+                <TooltipContent side="top">
+                  View civil engineering portfolio
+                </TooltipContent>
+              </Tooltip>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Link
+                    href="/ai"
+                    className="inline-flex items-center gap-2 rounded-full border px-5 py-2.5 font-semibold text-foreground transition-all hover:gap-3 hover:bg-accent uppercase tracking-wider"
+                    style={{ fontSize: "clamp(0.7rem, 0.65rem + 0.2vw, 0.875rem)" }}
+                  >
+                    AI Portfolio <ArrowIcon className="size-3.5" />
+                  </Link>
+                </TooltipTrigger>
+                <TooltipContent side="top">
+                  View AI development portfolio
+                </TooltipContent>
+              </Tooltip>
             </div>
             {baseUrl && (
               <div className="md:hidden self-stretch w-full">

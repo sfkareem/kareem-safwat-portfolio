@@ -1,7 +1,8 @@
 'use client'
 
 import { motion } from "motion/react"
-import { Menu, X, Home, Briefcase, FileText, Award, Mail } from "lucide-react"
+import { Home, Briefcase, FileText, Award, Mail } from "lucide-react"
+import { MenuIcon } from "@/components/v1/skiper99"
 import { useState } from "react"
 import { cn } from "@/lib/utils"
 
@@ -33,14 +34,12 @@ export function MobileMenu() {
               "rounded-full flex items-center justify-center",
               "bg-primary hover:bg-primary/90 transition-colors"
             )}
-            onClick={() => setActive(!active)}
-            animate={{ rotate: active ? 90 : 0 }}
           >
-            {active ? (
-              <X size={24} className="text-primary-foreground" />
-            ) : (
-              <Menu size={24} className="text-primary-foreground" />
-            )}
+            <MenuIcon
+              open={active}
+              onToggle={() => setActive(!active)}
+              className="size-5 md:size-7 lg:size-8 text-primary-foreground"
+            />
           </motion.button>
         </motion.div>
         
@@ -72,7 +71,7 @@ export function MobileMenu() {
                 onClick={() => setActive(false)}
                 className="flex items-center justify-center w-full h-full"
               >
-                <Icon size={20} className="text-foreground" />
+                <Icon className="h-2.5 w-2.5 md:h-3.5 md:w-3.5 lg:h-4 lg:w-4 text-foreground" />
               </a>
             </motion.div>
           )

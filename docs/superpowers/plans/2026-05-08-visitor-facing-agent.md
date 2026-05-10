@@ -1007,7 +1007,7 @@ git commit -m "feat: add Vercel Analytics replacing Firebase Analytics"
 
 ```bash
 @"
-GEMINI_API_KEY=YOUR_GEMINI_API_KEY
+GEMINI_API_KEY="your_gemini_api_key_here"
 NEON_DATABASE_URL=
 UPSTASH_REDIS_URL=
 UPSTASH_REDIS_TOKEN=

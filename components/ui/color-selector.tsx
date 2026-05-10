@@ -11,6 +11,11 @@ import {
 import { Button } from "@/components/ui/button";
 import { HexColorPicker } from "react-colorful";
 import tinycolor from "tinycolor2";
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from "@/components/v1/skiper101";
 
 interface ColorSelectorProps {
   defaultValue?: string;
@@ -57,19 +62,24 @@ export function ColorSelector({ defaultValue = "#71717a", onToggle, className }:
 
   return (
     <Popover open={open} onOpenChange={handleOpenChange}>
-      <PopoverTrigger asChild>
-        <Button
-          variant="ghost"
-          size="icon"
-          className={cn(
-            "size-5 md:size-7 lg:size-8 rounded-full bg-transparent transition-all hover:bg-background/10 shrink-0",
-            open && "rotate-90",
-            className
-          )}
-        >
-          <Palette className="h-2.5 w-2.5 md:h-3.5 w-3.5 lg:h-4 w-4" />
-        </Button>
-      </PopoverTrigger>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <PopoverTrigger asChild>
+            <Button
+              variant="ghost"
+              size="icon"
+              className={cn(
+                "size-5 md:size-7 lg:size-8 rounded-full bg-transparent transition-all hover:bg-background/10 shrink-0",
+                open && "rotate-90",
+                className
+              )}
+            >
+              <Palette className="h-2.5 w-2.5 md:h-3.5 w-3.5 lg:h-4 w-4" />
+            </Button>
+          </PopoverTrigger>
+        </TooltipTrigger>
+        <TooltipContent side="bottom">Change color</TooltipContent>
+      </Tooltip>
       <PopoverContent
         side="bottom"
         sideOffset={8}

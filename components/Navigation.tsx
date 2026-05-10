@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Menu, X } from "lucide-react";
+import { MenuIcon } from "@/components/v1/skiper99";
 import portfolioData from "@/data/portfolio.json";
 
 export default function Navigation() {
@@ -65,11 +65,14 @@ export default function Navigation() {
           {/* Mobile Menu Toggle */}
           <button 
             className="md:hidden p-2 text-muted-foreground"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={isMobileMenuOpen}
           >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            <MenuIcon
+              open={isMobileMenuOpen}
+              onToggle={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="size-5 md:size-7 lg:size-8"
+            />
           </button>
         </div>
       </div>

@@ -3,7 +3,7 @@
 import * as React from "react";
 import { motion } from "motion/react";
 import { ColorSelector } from "./color-selector";
-import { AnimatedThemeToggleButton } from "./animated-theme-toggle-button";
+import { ThemeToggleButton } from "@/components/v1/skiper26";
 
 export default function Navbar() {
   const [isExpanded, setIsExpanded] = React.useState(false);
@@ -42,7 +42,7 @@ export default function Navbar() {
             onToggle={setIsExpanded}
           />
           <div className="w-[1px] h-4 bg-border/50 mx-1" />
-          <AnimatedThemeToggleButton />
+          <ThemeToggleButton className="size-5 md:size-7 lg:size-8 p-1 md:p-1.5 lg:p-1.5 bg-background/80 backdrop-blur-sm border" />
         </div>
       </motion.header>
     </div>

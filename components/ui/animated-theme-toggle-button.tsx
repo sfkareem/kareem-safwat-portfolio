@@ -5,6 +5,11 @@ import { useTheme } from "next-themes";
 import { motion } from "motion/react";
 import { Moon, Sun } from "lucide-react";
 import { cn } from "@/lib/utils";
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from "@/components/v1/skiper101";
 
 interface AnimatedThemeToggleButtonProps {
   type?: "horizontal" | "vertical";
@@ -26,14 +31,16 @@ export function AnimatedThemeToggleButton({ type = "horizontal", className }: An
   const isDark = resolvedTheme === "dark";
 
   return (
-    <button
-      onClick={() => setTheme(isDark ? "light" : "dark")}
-      className={cn(
-        "relative flex items-center justify-center rounded-full bg-transparent p-1 md:p-1.5 lg:p-2 transition-colors hover:bg-background/10",
-        className
-      )}
-      aria-label="Toggle theme"
-    >
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <button
+          onClick={() => setTheme(isDark ? "light" : "dark")}
+          className={cn(
+            "relative flex items-center justify-center rounded-full bg-transparent p-1 md:p-1.5 lg:p-2 transition-colors hover:bg-background/10",
+            className
+          )}
+          aria-label="Toggle theme"
+        >
       <motion.div
         initial={false}
         animate={{
@@ -55,6 +62,9 @@ export function AnimatedThemeToggleButton({ type = "horizontal", className }: An
       >
         <Moon className="h-3 w-3 md:h-4 w-4 lg:h-5 w-5" />
       </motion.div>
-    </button>
+        </button>
+      </TooltipTrigger>
+      <TooltipContent side="bottom">Toggle theme</TooltipContent>
+    </Tooltip>
   );
 }

@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { motion } from "motion/react";
-import { ArrowRight, Linkedin } from "lucide-react";
+import { Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ArrowIcon } from "@/components/v1/skiper99";
 
 function Hero() {
   const [titleNumber, setTitleNumber] = useState(0);
@@ -67,7 +68,7 @@ function Hero() {
                 document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
               }}
             >
-              Explore Profile <ArrowRight className="w-4 h-4" />
+              Explore Profile <ArrowIcon className="size-4" />
             </Button>
             <Button 
               size="lg" 

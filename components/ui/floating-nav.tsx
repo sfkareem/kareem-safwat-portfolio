@@ -3,7 +3,7 @@
 import * as React from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ColorSelector } from "./color-selector";
-import { AnimatedThemeToggleButton } from "./animated-theme-toggle-button";
+import { ThemeToggleButton } from "@/components/v1/skiper26";
 import { cn } from "@/lib/utils";
 import portfolioData from "@/data/portfolio.json";
 import { 
@@ -18,6 +18,11 @@ import { HubIcon } from "./hub-icon";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from "@/components/v1/skiper101";
 
 export default function FloatingNav() {
   const pathname = usePathname();
@@ -122,29 +127,34 @@ export default function FloatingNav() {
           animate={{ opacity: 1, y: 0 }}
           className="pointer-events-auto flex items-center gap-6 transition-all duration-500 bg-transparent"
         >
-          <Link
-            href="/"
-            onMouseEnter={() => setIsHovered("hub")}
-            onMouseLeave={() => setIsHovered(null)}
-            className={cn(
-              "relative flex items-center gap-2 transition-all duration-500",
-              isDarkBackground ? "text-white/40 hover:text-white" : "text-foreground/40 hover:text-foreground"
-            )}
-          >
-            <HubIcon className="w-4 h-4" />
-            <AnimatePresence>
-              {isHovered === "hub" && (
-                <motion.span
-                  initial={{ opacity: 0, x: -5, width: 0 }}
-                  animate={{ opacity: 1, x: 0, width: "auto" }}
-                  exit={{ opacity: 0, x: -5, width: 0 }}
-                  className="text-[10px] uppercase tracking-[0.2em] font-bold whitespace-nowrap overflow-hidden"
-                >
-                  Hub
-                </motion.span>
-              )}
-            </AnimatePresence>
-          </Link>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Link
+                href="/"
+                onMouseEnter={() => setIsHovered("hub")}
+                onMouseLeave={() => setIsHovered(null)}
+                className={cn(
+                  "relative flex items-center gap-2 transition-all duration-500",
+                  isDarkBackground ? "text-white/40 hover:text-white" : "text-foreground/40 hover:text-foreground"
+                )}
+              >
+                <HubIcon className="h-2.5 w-2.5 md:h-3.5 md:w-3.5 lg:h-4 lg:w-4" />
+                <AnimatePresence>
+                  {isHovered === "hub" && (
+                    <motion.span
+                      initial={{ opacity: 0, x: -5, width: 0 }}
+                      animate={{ opacity: 1, x: 0, width: "auto" }}
+                      exit={{ opacity: 0, x: -5, width: 0 }}
+                      className="text-[10px] uppercase tracking-[0.2em] font-bold whitespace-nowrap overflow-hidden"
+                    >
+                      Hub
+                    </motion.span>
+                  )}
+                </AnimatePresence>
+              </Link>
+            </TooltipTrigger>
+            <TooltipContent side="bottom">Home</TooltipContent>
+          </Tooltip>
 
           {navItems.map((item) => {
             const isActive = activeItem === item.href;
@@ -165,7 +175,7 @@ export default function FloatingNav() {
                     : (isDarkBackground ? "text-white/40 hover:text-white" : "text-foreground/40 hover:text-foreground")
                 )}
               >
-                <Icon className="w-4 h-4" />
+                <Icon className="h-2.5 w-2.5 md:h-3.5 md:w-3.5 lg:h-4 lg:w-4" />
                 <AnimatePresence>
                   {(isThisHovered || isActive) && (
                     <motion.span
@@ -190,8 +200,8 @@ export default function FloatingNav() {
           })}
 
           <div className="flex items-center gap-4 ml-2">
-            <ColorSelector defaultValue="default" className="opacity-40 hover:opacity-100 transition-opacity scale-90" />
-            <AnimatedThemeToggleButton className="opacity-40 hover:opacity-100 transition-opacity scale-90" />
+            <ColorSelector defaultValue="default" className="opacity-40 hover:opacity-100 transition-opacity" />
+            <ThemeToggleButton className="size-5 md:size-7 lg:size-8 p-1 md:p-1.5 lg:p-1.5 bg-background/80 backdrop-blur-sm border" />
           </div>
         </motion.nav>
       </div>
@@ -204,16 +214,21 @@ export default function FloatingNav() {
           className="pointer-events-auto flex items-center justify-between px-6 py-4 w-full transition-all duration-500 bg-transparent"
         >
           <div className="flex items-center gap-5">
-            <Link
-              href="/"
-              className={cn(
-                "relative flex flex-col items-center justify-center gap-1 min-w-[44px] min-h-[44px] transition-all duration-500",
-                isDarkBackground ? "text-white/50 hover:text-white" : "text-foreground/50 hover:text-foreground"
-              )}
-            >
-              <HubIcon className="w-5 h-5" />
-              <span className="text-[8px] uppercase tracking-widest font-bold">Hub</span>
-            </Link>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Link
+                href="/"
+                className={cn(
+                  "relative flex flex-col items-center justify-center gap-1 min-w-[44px] min-h-[44px] transition-all duration-500",
+                  isDarkBackground ? "text-white/50 hover:text-white" : "text-foreground/50 hover:text-foreground"
+                )}
+              >
+                <HubIcon className="h-2.5 w-2.5 md:h-3.5 md:w-3.5 lg:h-4 lg:w-4" />
+                <span className="text-[8px] uppercase tracking-widest font-bold">Hub</span>
+              </Link>
+            </TooltipTrigger>
+            <TooltipContent side="top">Home</TooltipContent>
+          </Tooltip>
 
             {navItems.map((item) => {
               const isActive = activeItem === item.href;
@@ -231,7 +246,7 @@ export default function FloatingNav() {
                       : (isDarkBackground ? "text-white/50 hover:text-white" : "text-foreground/50 hover:text-foreground")
                   )}
                 >
-                  <Icon className="w-5 h-5" />
+                  <Icon className="h-2.5 w-2.5 md:h-3.5 md:w-3.5 lg:h-4 lg:w-4" />
                   {isActive && (
                     <span className="text-[8px] uppercase tracking-widest font-bold">{item.label}</span>
                   )}
@@ -241,8 +256,8 @@ export default function FloatingNav() {
           </div>
           
           <div className="flex items-center gap-4">
-            <ColorSelector defaultValue="default" className="scale-90" />
-            <AnimatedThemeToggleButton className="scale-90" />
+            <ColorSelector defaultValue="default" />
+            <ThemeToggleButton className="size-5 md:size-7 lg:size-8 p-1 md:p-1.5 lg:p-1.5 bg-background/80 backdrop-blur-sm border" />
           </div>
         </motion.nav>
       </div>

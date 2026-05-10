@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect, type FormEvent } from "react";
+import { useState, useRef, useEffect, useLayoutEffect, type FormEvent } from "react";
 import { cn } from "@/lib/utils";
 import { TAB_LABELS, getTabContent, type TabId } from "./terminal-content";
 import { TypewriterText } from "./TypewriterText";
@@ -77,13 +77,21 @@ export default function TerminalShell() {
   const [entries, setEntries] = useState<CmdEntry[]>([]);
   const [cmdInput, setCmdInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [chatMessages, setChatMessages] = useState<Message[]>(loadHistory);
+  const [chatMessages, setChatMessages] = useState<Message[]>([]);
+  const [chatLoaded, setChatLoaded] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [minimized, setMinimized] = useState(false);
   const bodyRef = useRef<HTMLDivElement>(null);
   const abortRef = useRef<AbortController | null>(null);
   const chatMessagesRef = useRef<Message[]>(chatMessages);
   const welcomeStarted = useRef(false);
+
+  useEffect(() => {
+    const history = loadHistory();
+    chatMessagesRef.current = history;
+    setChatMessages(history);
+    setChatLoaded(true);
+  }, []);
 
   useEffect(() => {
     const handler = () => setIsFullscreen(!!document.fullscreenElement);
@@ -96,13 +104,26 @@ export default function TerminalShell() {
   }, [chatMessages]);
 
   useEffect(() => {
-    if (bodyRef.current) {
-      bodyRef.current.scrollTop = bodyRef.current.scrollHeight;
-    }
-  }, [entries, chatMessages]);
+    const el = bodyRef.current;
+    if (!el) return;
+    const observer = new ResizeObserver(() => {
+      el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
+    });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
-  // Welcome sequence on first load
   useEffect(() => {
+    const el = bodyRef.current;
+    if (!el) return;
+    const observer = new MutationObserver(() => {
+      el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
+    });
+observer.observe(el, { characterData: true, childList: true, subtree: true });
+    return () => observer.disconnect();
+  }, []);
+
+  useLayoutEffect(() => {
     if (welcomeStarted.current) return;
     welcomeStarted.current = true;
 
@@ -120,6 +141,10 @@ export default function TerminalShell() {
 
   const runCommand = (tab: TabId) => {
     setActiveTab(tab);
+    requestAnimationFrame(() => {
+      const el = bodyRef.current;
+      if (el) el.scrollTop = el.scrollHeight;
+    });
     if (tab === "./agent") return;
     const content = getTabContent(tab);
     const id = crypto.randomUUID();
@@ -135,6 +160,20 @@ export default function TerminalShell() {
 
   const sendChat = async (text: string, tabContext?: TabId) => {
     const trimmed = text.trim();
+
+    // Check for image input (base64 data URLs)
+    if (trimmed.startsWith("data:image/") || trimmed.includes("data:image/")) {
+      const msgs = [...chatMessagesRef.current];
+      const last = msgs[msgs.length - 1];
+      if (last && last.role === "assistant") {
+        last.content = "Error: This model does not support image input. Please describe your question in text.";
+      }
+      chatMessagesRef.current = msgs;
+      setChatMessages(msgs);
+      saveHistory(msgs);
+      setIsLoading(false);
+      return;
+    }
 
     // Handle /commands
     if (trimmed.startsWith("/")) {
@@ -359,7 +398,7 @@ export default function TerminalShell() {
   };
 
   return (
-    <div className="h-screen bg-zinc-950 text-zinc-100 font-mono relative overflow-hidden">
+    <div className="h-screen bg-zinc-950 text-zinc-100 font-mono relative overflow-hidden flex flex-col">
       {/* Mac terminal-style scrollbar */}
       <style>{`
         .terminal-body::-webkit-scrollbar {
@@ -428,7 +467,42 @@ export default function TerminalShell() {
 
       {/* Body area */}
       <div ref={bodyRef} className="flex-1 overflow-y-auto p-4 space-y-2 terminal-body">
-        {/* Command entries */}
+        {/* Chat messages (first so new entries appear at bottom) */}
+        {chatMessages.length > 0 && chatMessages.map((msg) => (
+          <div key={msg.id} className="mb-3">
+            {msg.role === "user" ? (
+              <div>
+                <span className="text-green-400 text-sm">$</span>{" "}
+                <span className="text-zinc-200 text-sm">{msg.content}</span>
+              </div>
+            ) : (
+              <div className="text-zinc-300 text-sm leading-relaxed whitespace-pre-wrap">
+                <span className="text-zinc-500">&gt;</span>{" "}
+                {msg.content || (
+                  <span className="inline-block size-2 bg-green-400 rounded-full animate-pulse" />
+                )}
+              </div>
+            )}
+          </div>
+        ))}
+
+        {isLoading && chatMessages.length > 0 && !chatMessages[chatMessages.length - 1]?.content && (
+          <div className="flex items-center gap-2 text-zinc-500 text-sm">
+            <span className="inline-block size-2 bg-green-400 rounded-full animate-pulse" />
+            Thinking...
+          </div>
+        )}
+
+        {/* ./agent tab chat input — always at bottom of terminal */}
+        {activeTab === "./agent" && (
+          <TerminalChat
+            messages={chatMessages}
+            isLoading={isLoading}
+            onSend={(text: string) => sendChat(text)}
+          />
+        )}
+
+        {/* Command entries (after chat so they appear at bottom) */}
         {entries.map((entry) => (
           <div key={entry.id} className="mb-3">
             {entry.command && (
@@ -459,40 +533,6 @@ export default function TerminalShell() {
             )}
           </div>
         ))}
-
-        {/* Chat messages */}
-        {chatMessages.length > 0 && chatMessages.map((msg) => (
-          <div key={msg.id} className="mb-3">
-            {msg.role === "user" ? (
-              <div>
-                <span className="text-green-400 text-sm">$</span>{" "}
-                <span className="text-zinc-200 text-sm">{msg.content}</span>
-              </div>
-            ) : (
-              <div className="text-zinc-300 text-sm leading-relaxed whitespace-pre-wrap">
-                <span className="text-zinc-500">&gt;</span>{" "}
-                {msg.content || (
-                  <span className="inline-block size-2 bg-green-400 rounded-full animate-pulse" />
-                )}
-              </div>
-            )}
-          </div>
-        ))}
-
-        {isLoading && chatMessages.length > 0 && !chatMessages[chatMessages.length - 1]?.content && (
-          <div className="flex items-center gap-2 text-zinc-500 text-sm">
-            <span className="inline-block size-2 bg-green-400 rounded-full animate-pulse" />
-            Thinking...
-          </div>
-        )}
-
-        {activeTab === "./agent" && (
-          <TerminalChat
-            messages={chatMessages}
-            isLoading={isLoading}
-            onSend={(text: string) => sendChat(text)}
-          />
-        )}
       </div>
 
       {/* Prompt bar */}

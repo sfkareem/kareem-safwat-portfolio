@@ -19,6 +19,11 @@ import {
   Blocks
 } from "lucide-react";
 import portfolioData from "@/data/portfolio.json";
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from "@/components/v1/skiper101";
 
 const iconMap: Record<string, any> = {
   // Civil Tools
@@ -91,21 +96,27 @@ export function SkillsSection({ category = "civil" }: SkillsSectionProps) {
               {expertise.tools.map((tool, index) => {
                 const Icon = iconMap[tool] || Settings;
                 return (
-                  <motion.div
-                    key={tool}
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.05 }}
-                    className="group p-4 rounded-2xl bg-background/50 shadow-md hover:bg-background hover:shadow-lg transition-all duration-300"
-                  >
-                    <div className="flex flex-col sm:flex-row items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-muted flex items-center justify-center group-hover:bg-primary/10 transition-colors">
-                        <Icon className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                      </div>
-                      <span className="font-medium text-center sm:text-left">{tool}</span>
-                    </div>
-                  </motion.div>
+                  <Tooltip key={tool}>
+                    <TooltipTrigger asChild>
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: index * 0.05 }}
+                        className="group p-4 rounded-2xl bg-background/50 shadow-md hover:bg-background hover:shadow-lg transition-all duration-300"
+                      >
+                        <div className="flex flex-col sm:flex-row items-center gap-3">
+                          <div className="w-10 h-10 rounded-xl bg-muted flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                            <Icon className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                          </div>
+                          <span className="font-medium text-center sm:text-left">{tool}</span>
+                        </div>
+                      </motion.div>
+                    </TooltipTrigger>
+                    <TooltipContent side="top">
+                      {category === "civil" ? "Civil Engineering Tool" : "AI Development Tool"}
+                    </TooltipContent>
+                  </Tooltip>
                 );
               })}
             </div>

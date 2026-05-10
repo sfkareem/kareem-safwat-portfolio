@@ -4,13 +4,18 @@ import { motion } from "motion/react"
 import { useState, type ReactNode } from "react"
 import { Home, Briefcase, Wrench, Award, Mail, Rocket } from "lucide-react"
 import { ColorSelector } from "./color-selector"
-import { AnimatedThemeToggleButton } from "./animated-theme-toggle-button"
+import { ThemeToggleButton } from "@/components/v1/skiper26"
 import { cn } from "@/lib/utils"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useTheme } from "next-themes"
-import { HubIcon } from "./hub-icon"
 import * as React from "react"
+import { HubIcon } from "./hub-icon"
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from "@/components/v1/skiper101"
 
 export type NavItem = {
   icon: ReactNode
@@ -115,7 +120,7 @@ export function VerticalTooltipNavbar() {
               isDarkBackground ? "text-white/60 hover:text-white" : "text-muted-foreground hover:text-foreground"
             )}
           >
-            <HubIcon className="size-5" />
+            <HubIcon className="size-5 md:size-7 lg:size-8" />
           </Link>
 
           {navItems.map((item) => {
@@ -132,13 +137,13 @@ export function VerticalTooltipNavbar() {
                     : "text-muted-foreground hover:text-foreground"
                 )}
               >
-                <span className="size-5">{item.icon}</span>
+                <span className="size-5 md:size-7 lg:size-8">{item.icon}</span>
               </a>
             )
           })}
 
           <div className="flex items-center gap-2 pl-2 border-l">
-            <AnimatedThemeToggleButton className="size-9 opacity-60 hover:opacity-100 transition-opacity" />
+            <ThemeToggleButton className="size-5 md:size-7 lg:size-8 p-1 md:p-1.5 lg:p-1.5 bg-background/80 backdrop-blur-sm border" />
           </div>
         </motion.nav>
       </div>
@@ -164,50 +169,59 @@ function VerticalNavTooltip({
   return (
     <div className="flex flex-col items-center justify-center gap-1 rounded-2xl bg-background/80 backdrop-blur-lg border p-2 shadow-lg">
       {/* Hub link */}
-      <Link
-        href="/"
-        className={cn(
-          "flex items-center justify-center rounded-full transition-colors hover:bg-accent",
-          isDark ? "text-white/60 hover:text-white" : "text-muted-foreground hover:text-foreground"
-        )}
-      >
-        <div className="flex size-10 items-center justify-center p-2">
-          <HubIcon className="size-full" />
-        </div>
-      </Link>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Link
+            href="/"
+            className={cn(
+              "flex items-center justify-center rounded-full transition-colors hover:bg-accent",
+              isDark ? "text-white/60 hover:text-white" : "text-muted-foreground hover:text-foreground"
+            )}
+          >
+            <div className="flex size-5 md:size-7 lg:size-8 items-center justify-center p-1 md:p-1.5 lg:p-1.5">
+              <HubIcon className="size-full" />
+            </div>
+          </Link>
+        </TooltipTrigger>
+        <TooltipContent side="right">Home</TooltipContent>
+      </Tooltip>
 
       <div className="w-6 h-px bg-border" />
 
       {items.map((item) => {
         const isActive = activeItem === item.href
         return (
-          <button
-            key={item.href}
-            onClick={() => {
-              setActiveItem(item.href)
-              const el = document.querySelector(item.href)
-              el?.scrollIntoView({ behavior: "smooth" })
-            }}
-            className={cn(
-              "flex cursor-pointer items-center justify-center rounded-full transition-colors hover:bg-accent",
-              isActive
-                ? isDark ? "text-white" : "text-primary"
-                : isDark ? "text-white/40 hover:text-white" : "text-muted-foreground hover:text-foreground"
-            )}
-          >
-            <div className="flex size-10 items-center justify-center p-2">
-              {item.icon}
-            </div>
-            <span className="sr-only">{item.label}</span>
-          </button>
+          <Tooltip key={item.href}>
+            <TooltipTrigger asChild>
+              <button
+                onClick={() => {
+                  setActiveItem(item.href)
+                  const el = document.querySelector(item.href)
+                  el?.scrollIntoView({ behavior: "smooth" })
+                }}
+                className={cn(
+                  "flex cursor-pointer items-center justify-center rounded-full transition-colors hover:bg-accent",
+                  isActive
+                    ? isDark ? "text-white" : "text-primary"
+                    : isDark ? "text-white/40 hover:text-white" : "text-muted-foreground hover:text-foreground"
+                )}
+              >
+                <div className="flex size-5 md:size-7 lg:size-8 items-center justify-center p-1 md:p-1.5 lg:p-1.5">
+                  {item.icon}
+                </div>
+                <span className="sr-only">{item.label}</span>
+              </button>
+            </TooltipTrigger>
+            <TooltipContent side="right">{item.label}</TooltipContent>
+          </Tooltip>
         )
       })}
 
       <div className="w-6 h-px bg-border" />
 
       <div className="flex flex-col items-center gap-2 pt-1">
-        <ColorSelector defaultValue="default" className="opacity-40 hover:opacity-100 transition-opacity scale-75" />
-        <AnimatedThemeToggleButton className="opacity-40 hover:opacity-100 transition-opacity scale-75" />
+        <ColorSelector defaultValue="default" className="opacity-40 hover:opacity-100 transition-opacity" />
+        <ThemeToggleButton className="size-5 md:size-7 lg:size-8 p-1 md:p-1.5 lg:p-1.5 bg-background/80 backdrop-blur-sm border" />
       </div>
     </div>
   )
