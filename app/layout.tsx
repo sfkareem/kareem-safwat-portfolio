@@ -40,7 +40,12 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
         <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-4 focus:left-4 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-md">
           Skip to main content
         </a>
-        <Script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.72/build/spline-viewer.js" strategy="lazyOnload" />
+        <Script
+          type="module"
+          src="https://unpkg.com/@splinetool/viewer@1.9.72/build/spline-viewer.js"
+          strategy="lazyOnload"
+          integrity="sha256-71023f4c27537ed88b4fa4da83a12816eb44418bda398a558b241b25defe1eb8" crossOrigin="anonymous"
+        />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
