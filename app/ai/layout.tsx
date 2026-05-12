@@ -50,6 +50,7 @@ export default function AILayout({
 
   return (
     <>
+      {/* NOTE: jsonLd must never contain user-provided data — it's hardcoded above */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

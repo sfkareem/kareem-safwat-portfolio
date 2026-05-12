@@ -10,15 +10,11 @@ import { CertificationsSection } from "@/components/CertificationsSection";
 import { ContactSection } from "@/components/ContactSection";
 import { FloatingFooter } from "@/components/ui/floating-footer";
 import portfolioData from "@/data/portfolio.json";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function CivilPage() {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 1500);
-    return () => clearTimeout(timer);
-  }, []);
+  // Remove artificial loading delay (Issue 18)
+  const [isLoading, setIsLoading] = useState(false);
 
   const timelineData = portfolioData.experience.map((exp, index) => ({
     id: index,

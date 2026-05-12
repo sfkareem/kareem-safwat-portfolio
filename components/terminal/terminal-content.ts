@@ -46,9 +46,9 @@ export const contact = {
   status: "Available for Work",
 };
 
-export type TabId = "whoami" | "repos" | "~/stack" | "certs" | "./reach" | "./agent";
+export const TAB_LABELS = ['whoami', 'repos', '~/stack', 'certs', './reach', './agent'] as const;
 
-export const TAB_LABELS: TabId[] = ["whoami", "repos", "~/stack", "certs", "./reach", "./agent"];
+export type TabId = typeof TAB_LABELS[number];
 
 export function getTabContent(tab: TabId): string {
   switch (tab) {

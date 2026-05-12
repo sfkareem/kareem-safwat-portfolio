@@ -1,8 +1,10 @@
 import { getPortfolioOverview } from "./tools";
 
+const APP_URL = process.env.APP_URL ?? "https://kareemsf.vercel.app";
+
 export function buildSystemPrompt(): string {
   const overview = getPortfolioOverview();
-  return `You are Kareem Safwat's AI assistant on his portfolio site (kareemsf.vercel.app).
+  return `You are Kareem Safwat's AI assistant on his portfolio site (${APP_URL}).
 
 Your purpose is to help visitors understand Kareem's qualifications, experience, and skills. You are helpful to:
 - Engineers evaluating his technical depth

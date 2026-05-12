@@ -37,12 +37,37 @@ export function ColorSelector({ defaultValue = "#71717a", onToggle, className }:
   const [selected, setSelected] = React.useState(defaultValue);
   const [open, setOpen] = React.useState(false);
 
+  // Restore original CSS variables on component unmount (Issue 20)
+  React.useEffect(() => {
+    return () => {
+      const originals = (window as any).__originalThemeVars;
+      if (originals) {
+        const root = document.documentElement;
+        if (originals['--primary']) root.style.setProperty('--primary', originals['--primary']);
+        if (originals['--primary-foreground']) root.style.setProperty('--primary-foreground', originals['--primary-foreground']);
+        if (originals['--primary-muted']) root.style.setProperty('--primary-muted', originals['--primary-muted']);
+      }
+    };
+  }, []);
+
   const handleSelect = (color: string) => {
     setSelected(color);
     
     // Apply dynamic theme variables to root
     const root = document.documentElement;
     const tc = tinycolor(color);
+    
+    // Save original CSS variable values before modifying (Issue 20)
+    const originalPrimary = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim();
+    const originalPrimaryForeground = getComputedStyle(document.documentElement).getPropertyValue('--primary-foreground').trim();
+    const originalPrimaryMuted = getComputedStyle(document.documentElement).getPropertyValue('--primary-muted').trim();
+    
+    // Store original values for restoration
+    (window as any).__originalThemeVars = {
+      '--primary': originalPrimary,
+      '--primary-foreground': originalPrimaryForeground,
+      '--primary-muted': originalPrimaryMuted,
+    };
     
     // Set primary color
     root.style.setProperty('--primary', color);

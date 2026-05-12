@@ -10,9 +10,19 @@ import { motion, AnimatePresence } from "motion/react";
 export function AIChatWidget() {
   const [isOpen, setIsOpen] = React.useState(false);
   const [copiedIndex, setCopiedIndex] = React.useState<number | null>(null);
-  const [sessionId, setSessionId] = React.useState<string>(() => {
+  // NOTE: sessionId stored in localStorage is vulnerable to XSS attacks.
+// TODO (Issue 8): Migrate to httpOnly cookies for session management.
+// TODO: Configure CSP (Content Security Policy) headers on the server.
+// See: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
+
+const [sessionId, setSessionId] = React.useState<string>(() => {
     if (typeof window === "undefined") return "";
-    return localStorage.getItem("agent-session-id") || "";
+    const stored = localStorage.getItem("agent-session-id") || "";
+    // Basic validation: ensure it's a non-empty string with minimum length
+    if (stored && typeof stored === 'string' && stored.length >= 16) {
+      return stored;
+    }
+    return "";
   });
   const messagesEndRef = React.useRef<HTMLDivElement>(null);
 
@@ -109,7 +119,7 @@ export function AIChatWidget() {
                 </button>
               </div>
             </div>
-            <div className="flex-1 overflow-y-auto p-4 space-y-4">
+            <div className="flex-1 overflow-y-auto p-4 space-y-4" role="log" aria-live="polite" aria-label="Chat messages">
               {messages.map((m, i) => (
                 <div
                   key={m.id}
@@ -130,7 +140,11 @@ export function AIChatWidget() {
                           : "bg-muted/50"
                       )}
                     >
-                      <ReactMarkdown>{m.content}</ReactMarkdown>
+                      <ReactMarkdown components={{
+                      p: ({children}) => <p className="text-sm">{children}</p>,
+                      code: ({children}) => <code className="bg-muted px-1 rounded text-xs">{children}</code>,
+                      pre: ({children}) => <pre className="bg-muted p-2 rounded text-xs overflow-x-auto">{children}</pre>,
+                    }}>{m.content}</ReactMarkdown>
                     </div>
                     {m.role === "assistant" && m.content && (
                       <button

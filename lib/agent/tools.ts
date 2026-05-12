@@ -40,13 +40,18 @@ export function getContactInfo() {
   };
 }
 
+const SEARCH_ALLOWED_KEYS = ["experience", "expertise", "certifications", "projects", "statistics", "personal", "contact"] as const;
+
 export function searchPortfolio(query: string) {
   if (!query || !query.trim()) return [];
   const q = query.toLowerCase();
   const results: { section: string; match: string }[] = [];
 
   const searchObject = (obj: Record<string, unknown>, section: string) => {
-    for (const value of Object.values(obj)) {
+    for (const [key, value] of Object.entries(obj)) {
+      if (!SEARCH_ALLOWED_KEYS.includes(key as typeof SEARCH_ALLOWED_KEYS[number])) {
+        continue;
+      }
       if (typeof value === "string" && value.toLowerCase().includes(q)) {
         results.push({ section, match: value });
       } else if (typeof value === "object" && value !== null) {
