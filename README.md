@@ -1,20 +1,42 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Kareem Safwat — Portfolio
 
-# Run and deploy your AI Studio app
+Personal portfolio of Kareem Safwat — Senior Quantity Surveyor & AI Vibe Coder.
 
-This contains everything you need to run your app locally.
+## Stack
 
-View your app in AI Studio: https://ai.studio/apps/e750df5d-09fd-4178-9aa6-8a088ab7f17d
+- **Framework:** Next.js 15 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS v4
+- **AI:** Vercel AI SDK + Google Gemini
+- **Database:** Vercel Postgres + Upstash Redis
+- **Animations:** Framer Motion, GSAP, Lenis
 
-## Run Locally
+## Pages
 
-**Prerequisites:**  Node.js
+| Route | Description |
+|-------|-------------|
+| `/` | Landing — dual identity hero, stats, experience |
+| `/civil` | Full civil/QS portfolio |
+| `/ai` | AI terminal — interactive chat powered by Gemini |
+| `/ai/prototype` | AI chat prototype (3 modes) |
+| `/businesscard` | Digital vCard |
 
+## Quick Start
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+```bash
+npm install
+npm run dev
+```
+
+## Environment Variables
+
+Copy `.env.example` to `.env.local` and set:
+- `GEMINI_API_KEY` — Gemini API key (AI chat)
+- `APP_URL` — Your deployment URL
+
+## Build
+
+```bash
+npm run build   # Production build
+npm run lint    # ESLint
+```

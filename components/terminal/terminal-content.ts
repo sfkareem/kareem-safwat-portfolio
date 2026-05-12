@@ -1,8 +1,11 @@
+const CIVIL_YEARS = new Date().getFullYear() - 2017; // 9 (2026 - 2017)
+const AI_YEARS = new Date().getFullYear() - 2023; // 3 (2026 - 2023)
+
 export const personal = {
   name: "Kareem Safwat",
   title: "Senior Quantity Surveyor / AI Vibe Coder",
   tagline: "Constructing Value & Control",
-  summary: "Senior Quantity Surveyor with 9+ years of experience. RICS APC Candidate. Expert in tendering, procurement, and strategic cost management. Also an AI Vibe Coder and Agentic Software Developer leveraging Anthropic's Claude to automate complex workflows and build scalable full-stack web applications.",
+  summary: `Senior Quantity Surveyor with ${CIVIL_YEARS}+ years of experience (since 2017 graduation). RICS APC Candidate. Expert in tendering, procurement, and strategic cost management. Also an AI Vibe Coder and Agentic Software Developer leveraging Anthropic's Claude to automate complex workflows and build scalable full-stack web applications.`,
   resume: "https://1drv.ms/b/c/3ef89486fb4c3d1e/Ea1q4HK2lSNAg9JO-dxQHDoBT6CxmOV6giXxdlq9YNRKOg?e=m6m6ZY",
 };
 
@@ -54,7 +57,7 @@ export function getTabContent(tab: TabId): string {
         `Name:       ${personal.name}`,
         `Title:      ${personal.title}`,
         `Tagline:    ${personal.tagline}`,
-        `Experience: 9+ years (Civil) · 3+ years (AI)`,
+        `Experience: ${CIVIL_YEARS}+ years (Civil) · ${AI_YEARS}+ years (AI)`,
         `Resume:     ${personal.resume}`,
         `─`.repeat(48),
         ``,

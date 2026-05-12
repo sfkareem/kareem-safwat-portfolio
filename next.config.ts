@@ -5,11 +5,8 @@ const nextConfig: NextConfig = {
   allowedDevOrigins: ['192.168.1.5'],
   reactStrictMode: true,
   compress: false,
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false,
   },
   // Allow access to remote image placeholder.
   images: {

@@ -25,12 +25,9 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 );
 
 export default function BusinessCardPage() {
-  const [url, setUrl] = useState("");
-
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setUrl(window.location.origin);
-  }, []);
+  const [url, setUrl] = useState(() =>
+    typeof window !== "undefined" ? window.location.origin : ""
+  );
 
   const handleDownloadVCard = () => {
     const vcard = `BEGIN:VCARD

@@ -10,16 +10,21 @@ import { motion, AnimatePresence } from "motion/react";
 export function AIChatWidget() {
   const [isOpen, setIsOpen] = React.useState(false);
   const [copiedIndex, setCopiedIndex] = React.useState<number | null>(null);
-  const [sessionId, setSessionId] = React.useState<string>("");
+  const [sessionId, setSessionId] = React.useState<string>(() => {
+    if (typeof window === "undefined") return "";
+    return localStorage.getItem("agent-session-id") || "";
+  });
   const messagesEndRef = React.useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    let id = localStorage.getItem("agent-session-id");
-    if (!id) {
-      id = crypto.randomUUID();
+  React.useEffect(() => {
+    const stored = localStorage.getItem("agent-session-id");
+    if (!stored) {
+      const id = crypto.randomUUID();
       localStorage.setItem("agent-session-id", id);
+      setSessionId(id);
+    } else if (!localStorage.getItem("agent-session-id")) {
+      localStorage.setItem("agent-session-id", stored);
     }
-    setSessionId(id);
   }, []);
 
   const { messages, input, handleInputChange, handleSubmit, isLoading, setMessages, error } =
@@ -153,7 +158,7 @@ export function AIChatWidget() {
               )}
               {error && (
                 <div className="p-3 rounded-lg bg-red-500/10 text-red-500 text-sm">
-                  Sorry, I'm having trouble connecting right now.
+                  Sorry, I&apos;m having trouble connecting right now.
                 </div>
               )}
               <div ref={messagesEndRef} />

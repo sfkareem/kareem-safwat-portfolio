@@ -14,7 +14,7 @@ export async function POST(req: Request) {
       parts: [{ text: m.content }],
     }));
 
-  const geminiRes = await fetch(
+const geminiRes = await fetch(
     `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite-preview:streamGenerateContent?alt=sse&key=${apiKey}`,
     {
       method: "POST",

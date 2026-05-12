@@ -14,12 +14,9 @@ import {
 import { ArrowIcon } from "@/components/v1/skiper99"
 
 export default function Home() {
-  const [baseUrl, setBaseUrl] = useState("")
-
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setBaseUrl(window.location.origin)
-  }, [])
+  const [baseUrl, setBaseUrl] = useState(() =>
+    typeof window !== "undefined" ? window.location.origin : ""
+  );
 
   return (
     <main className="min-h-screen bg-background relative overflow-hidden">

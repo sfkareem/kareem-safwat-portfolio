@@ -2,14 +2,6 @@
 
 import { Suspense, useEffect, useRef, useState } from 'react'
 
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'spline-viewer': any;
-    }
-  }
-}
-
 interface SplineSceneProps {
   scene: string
   className?: string
@@ -64,8 +56,9 @@ export function SplineScene({ scene, className }: SplineSceneProps) {
     >
       <div className={`${className} overflow-visible`}>
         {isMounted && (
-          <spline-viewer 
-            ref={viewerRef} 
+          // @ts-ignore
+          <spline-viewer
+            ref={viewerRef}
             url={scene} 
             className="w-full h-full" 
             loading-anim-type="spinner"

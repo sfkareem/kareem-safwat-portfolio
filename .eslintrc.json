@@ -1,3 +1,9 @@
-{
-  "extends": "next"
-}
+export default [
+  {
+    files: ["**/*.{ts,tsx}"],
+    rules: {
+      "react-hooks/set-state-in-effect": "off",
+      "react-hooks/refs": "off",
+    },
+  },
+];
